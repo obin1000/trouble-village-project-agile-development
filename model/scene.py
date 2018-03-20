@@ -4,6 +4,11 @@ class TroubleVillage(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self.container = tk.Frame(self)
+
+        self.title('Trouble Village')
+        self.geometry('800x500')
+        self.resizable(width=False, height=False)
+
         self.container.pack(side="top", fill=None, expand=True)
         self._frame = StartPage(master=self.container, controller=self)
 
