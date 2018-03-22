@@ -18,3 +18,9 @@ from model.scene import *
 
 app = TroubleVillage()
 app.mainloop()
+
+from model.scene import *
+
+app = TroubleVillage()
+app.mainloop()
+

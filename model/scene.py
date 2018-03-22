@@ -35,19 +35,17 @@ class StartPage(tk.Frame):
 
 
 class VillagePage(tk.Frame):
-
     def __init__(self, master, controller):
-
         tk.Frame.__init__(self, master)
         self.controller = controller
 
         page_1_label = tk.Label(self, text="This is page Village")
-
         start_button = tk.Button(self, text="Return to start page",
                                  command=lambda: controller.switch_frame(StartPage))
         page_1_label.pack(side="top", fill="x", pady=10)
         start_button.pack()
         self.pack()
+
 
 class PageTwo(tk.Frame):
     def __init__(self, master, controller):
@@ -60,4 +58,3 @@ class PageTwo(tk.Frame):
         page_2_label.pack(side="top", fill="x", pady=10)
         start_button.pack()
         self.pack()
-
