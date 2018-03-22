@@ -22,18 +22,16 @@ class VillageEvent:
     def getState(self):
         return self.state
 
-bosbrand = "Bosbrand"
-overstroming = "Overstroming"
+bosbrand = " in brand"
+overstroming = " verstroomd"
 
 import random
 VillageEvent.Status=random.randint(1,100)
 
 if VillageEvent.Status <50:
         print("Status van het dorp: In brand")
-        print(bosbrand)
         VillageEvent.state = bosbrand
 
 elif VillageEvent.Status > 50:
         print("Status van het dorp: Overstroomd")
-        print(overstroming)
         VillageEvent.state = overstroming

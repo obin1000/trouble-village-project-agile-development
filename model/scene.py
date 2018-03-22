@@ -29,7 +29,7 @@ class StartPage(tk.Frame):
                                   command=lambda: controller.switch_frame(VillagePage))
         page_2_button = tk.Button(self, text="Open page two",
                                   command=lambda: controller.switch_frame(PageTwo))
-        page_3_button = tk.Button(self, text="Open page three",
+        page_3_button = tk.Button(self, text="Open page status",
                                   command=lambda: controller.switch_frame(PageStatus))
         start_label.pack(side="top", fill="x", pady=10)
         page_1_button.pack()
@@ -80,7 +80,7 @@ class PageStatus(tk.Frame):
                 self.controller = controller
 
                 page_2_label = tk.Label(self, text="This is page status")
-                status_label = tk.Label(self, text=VillageEvent.state)
+                status_label = tk.Label(self, text="Het dorp is " + VillageEvent.state)
 
                 start_button = tk.Button(self, text="Return to start page",
                                          command=lambda: controller.switch_frame(StartPage))
