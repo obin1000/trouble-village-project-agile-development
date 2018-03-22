@@ -7,6 +7,7 @@ class VillageEvent:
         self.effect = effect
         self.state = state
 
+
     def getEffect(self):
         return self.effect
 
