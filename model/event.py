@@ -6,6 +6,7 @@ class VillageEvent:
         self.Stats = Status
         self.effect = effect
 
+
     def getEffect(self):
         return self.effect
 
@@ -14,6 +15,8 @@ class VillageEvent:
 
     def getStatus(self):
         return self.Status
+
+
 
 import random
 VillageEvent.Status=random.randint(1,100)

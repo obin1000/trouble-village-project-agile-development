@@ -34,19 +34,22 @@ class StartPage(tk.Frame):
         self.pack()
 
 
+from model.event import *
 class VillagePage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
         villageImg = tk.PhotoImage(file=r"img/giphy.gif")
-
         lblVillageImg = tk.Label(self, image=villageImg)
+
+        villageImgBrand = tk.PhotoImage(file=r"img/village.gif")
+        lblVillageImgBrand = tk.Label(self, image=villageImgBrand)
         lblVillageImg.image = villageImg
 
         lblName = tk.Label(self, text="Naam")
         lblName.pack(side="top", fill="x", pady=1)
-        lblPopulation = tk.Label(self, text="Bevoling")
+        lblPopulation = tk.Label(self, text="Bevolking")
         lblPopulation.pack(side="top", fill="x", pady=1)
         lblWood = tk.Label(self, text="Hout")
         lblWood.pack(side="top", fill="x", pady=1)
