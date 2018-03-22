@@ -1,4 +1,5 @@
 import tkinter as tk
+from model.event import *
 
 class TroubleVillage(tk.Tk):
     def __init__(self):
@@ -28,9 +29,12 @@ class StartPage(tk.Frame):
                                   command=lambda: controller.switch_frame(VillagePage))
         page_2_button = tk.Button(self, text="Open page two",
                                   command=lambda: controller.switch_frame(PageTwo))
+        page_3_button = tk.Button(self, text="Open page three",
+                                  command=lambda: controller.switch_frame(PageStatus))
         start_label.pack(side="top", fill="x", pady=10)
         page_1_button.pack()
         page_2_button.pack()
+        page_3_button.pack()
         self.pack()
 
 
@@ -69,3 +73,18 @@ class PageTwo(tk.Frame):
         page_2_label.pack(side="top", fill="x", pady=10)
         start_button.pack()
         self.pack()
+
+class PageStatus(tk.Frame):
+            def __init__(self, master, controller):
+                tk.Frame.__init__(self, master)
+                self.controller = controller
+
+                page_2_label = tk.Label(self, text="This is page status")
+                status_label = tk.Label(self, text=VillageEvent.state)
+
+                start_button = tk.Button(self, text="Return to start page",
+                                         command=lambda: controller.switch_frame(StartPage))
+                page_2_label.pack(side="top", fill="x", pady=10)
+                status_label.pack(side="top", fill="x", pady=10)
+                start_button.pack()
+                self.pack()

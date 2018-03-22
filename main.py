@@ -9,7 +9,7 @@ print("Aantal hout:", dorp.getWood())
 
 from model.event import *
 
-villageEvent = VillageEvent("", "...")
+villageEvent = VillageEvent("", "...", "...")
 
 print("Effect op het dorp:", villageEvent.getEffect())
 
