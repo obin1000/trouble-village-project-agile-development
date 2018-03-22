@@ -6,7 +6,7 @@ class TroubleVillage(tk.Tk):
         self.container = tk.Frame(self)
 
         self.title('Trouble Village')
-        self.geometry('800x500')
+        self.geometry('800x480')
         self.resizable(width=False, height=False)
 
         self.container.pack(side="top", fill=None, expand=True)
@@ -39,10 +39,21 @@ class VillagePage(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
-        page_1_label = tk.Label(self, text="This is page Village")
+        villageImg = tk.PhotoImage(file=r"img/giphy.gif")
+
+        lblVillageImg = tk.Label(self, image=villageImg)
+        lblVillageImg.image = villageImg
+
+        lblName = tk.Label(self, text="Naam")
+        lblName.pack(side="top", fill="x", pady=1)
+        lblPopulation = tk.Label(self, text="Bevoling")
+        lblPopulation.pack(side="top", fill="x", pady=1)
+        lblWood = tk.Label(self, text="Hout")
+        lblWood.pack(side="top", fill="x", pady=1)
+
         start_button = tk.Button(self, text="Return to start page",
                                  command=lambda: controller.switch_frame(StartPage))
-        page_1_label.pack(side="top", fill="x", pady=10)
+        lblVillageImg.pack(side="top", fill="x", pady=10)
         start_button.pack()
         self.pack()
 
