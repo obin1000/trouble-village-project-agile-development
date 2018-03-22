@@ -11,7 +11,6 @@ from model.event import *
 
 villageEvent = VillageEvent("", "...")
 
-print("Effect op het dorp:", villageEvent.getStatus())
 print("Effect op het dorp:", villageEvent.getEffect())
 
 from model.scene import *
