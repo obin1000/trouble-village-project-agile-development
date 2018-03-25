@@ -8,9 +8,18 @@ class Village:
         self.water = water
         self.players = players
         self.turn = 0
+        self.state = 0
 
     def getPopulation(self):
         return self.population
+
+    # 0 = default; 1 = burning; 2 = flood;
+    def getState(self):
+        return self.state
+
+    def setState(self, state):
+        self.state = state
+        return self.state
 
     def setPopulation(self, population):
         self.population = population
@@ -26,6 +35,8 @@ class Village:
 
     def setWater(self, water):
         self.water = water
+        if(self.water < 0):
+            self.water = 0
 
     def getWater(self):
         return self.water

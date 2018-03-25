@@ -1,6 +1,7 @@
 import tkinter as tk
 from model.event import *
 from model.village import *
+import random
 
 class TroubleVillage(tk.Tk):
     def __init__(self):
@@ -8,7 +9,7 @@ class TroubleVillage(tk.Tk):
         self.container = tk.Frame(self)
 
         self.title('Trouble Village')
-        self.geometry('800x480')
+        self.geometry('800x550')
         self.resizable(width=False, height=False)
 
         self.container.pack(side="top", fill=None, expand=True)
@@ -20,20 +21,32 @@ class TroubleVillage(tk.Tk):
         self._frame = new_frame
 
     def startGame(self, players):
-        #starting game here
+        #starting game here.
+
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
 
-    def nextTurn(self):
-        self.dorp.nextTurn()
+    def update(self):
+        #call this function to refresh the resources.
         self.switch_frame(VillagePage)
 
+    def nextTurn(self):
+        # turn logic here.
+
+        # subtract a number between 0 and 5 from the population count per turn.
+        self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(0,5))
+
+        #set the village on fire.
+        Burn(self.dorp, self)
+
+        self.dorp.nextTurn()
+        self.update()
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.controller = controller
-
+        
         start_label = tk.Label(self, text="Trouble Village")
         page_1_button = tk.Button(self, text="Start Game",
                                   command=lambda: controller.switch_frame(ClassSelectionPage))
@@ -51,11 +64,8 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        villageImg = tk.PhotoImage(file=r"img/giphy.gif")
+        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
         lblVillageImg = tk.Label(self, image=villageImg)
-
-        villageImgBrand = tk.PhotoImage(file=r"img/village.gif")
-        lblVillageImgBrand = tk.Label(self, image=villageImgBrand)
         lblVillageImg.image = villageImg
 
         lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
@@ -66,6 +76,9 @@ class VillagePage(tk.Frame):
 
         lblWood = tk.Label(self, text="Hout : " + str(self.controller.dorp.getWood()))
         lblWood.pack(side="top", fill="x", pady=1)
+
+        lblWater = tk.Label(self, text="Water : " + str(self.controller.dorp.getWater()))
+        lblWater.pack(side="top", fill="x", pady=1)
 
         lblVillageImg.pack(side="top", fill="x", pady=10)
 

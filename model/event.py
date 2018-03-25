@@ -1,24 +1,31 @@
+import tkinter as tk
+
 # Abstracte weergaven van een dorp
 class VillageEvent:
     # Constructor voor Village
 
-    def __init__(self, Status, effect, state):
-        self.Stats = Status
-        self.effect = effect
-        self.state = state
+    def __init__(self):
+        print("test")
 
-    def getEffect(self):
-        return self.effect
 
-    def setEffect(self, effect):
-        self.effect = effect
+class Burn(VillageEvent):
+    def __init__(self, dorp, main):
+        #requirement of resource to fix
+        self.requirement = 200
 
-    def getStatus(self):
-        return self.Status
+        print("Your village is on fire! You'll need : "+ str(self.requirement) +"L water to put it out.")
+        nextTurn = tk.Button(main, text="Put out fire!", command=self.fix)
+        nextTurn.pack(side="bottom" , pady="1")
+        self.dorp = dorp
+        self.main = main
 
-    def setState(self, state):
-        return self.state
+    def fix(self):
+        if(self.dorp.getWater() >= 200):
+            self.dorp.setWater(self.dorp.getWater() - 200)
+            self.main.update()
+        else:
+            print("Not enough water! , you'll need to gather some first!")
 
-    def getState(self):
-        return self.state
-
+class Flood():
+    def __init__():
+        print("test")
