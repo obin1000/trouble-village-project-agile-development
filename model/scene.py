@@ -36,7 +36,11 @@ class TroubleVillage(tk.Tk):
         # subtract a number between 0 and 5 from the population count per turn.
         self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(0,5))
 
-        #set the village on fire.
+        #if there's an event active we apply a double population penalty.
+        if(self.dorp.getState() != 0):
+            self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(5,10))
+
+        #TEST: set the village on fire.
         if(self.dorp.getState() != 1):
             Burn(self.dorp, self)
 
