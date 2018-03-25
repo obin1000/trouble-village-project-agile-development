@@ -23,6 +23,9 @@ class Village:
 
     def setPopulation(self, population):
         self.population = population
+        if(self.population < 0):
+            print("Game over!")
+            self.population = 0
 
     def getName(self):
         return self.name
@@ -42,8 +45,9 @@ class Village:
         return self.water
 
     def nextTurn(self):
-        self.turn += 1
-        return self.turn
+        if(self.population > 0):
+            self.turn += 1
+            return self.turn
 
     def getTurn(self):
         return self.turn

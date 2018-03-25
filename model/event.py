@@ -23,7 +23,7 @@ class Burn(VillageEvent):
 
     def fix(self):
         if(self.dorp.getWater() >= 200):
-            self.dorp.setWater(self.dorp.getWater() - 200)
+            self.dorp.setWater(self.dorp.getWater() - self.requirement)
             self.main.update()
         else:
             print("Not enough water! , you'll need to gather some first!")
