@@ -1,11 +1,13 @@
 # Abstracte weergaven van een dorp
 class Village:
     # Constructor voor Village
-    def __init__(self, name, population, wood, water):
+    def __init__(self, name, population, wood, water, players):
         self.name = name
         self.population = population
         self.wood = wood
         self.water = water
+        self.players = players
+        self.turn = 0
 
     def getPopulation(self):
         return self.population
@@ -27,3 +29,10 @@ class Village:
 
     def getWater(self):
         return self.water
+
+    def nextTurn(self):
+        self.turn += 1
+        return self.turn
+
+    def getTurn(self):
+        return self.turn

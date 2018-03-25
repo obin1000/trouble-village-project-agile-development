@@ -1,5 +1,6 @@
 import tkinter as tk
 from model.event import *
+from model.village import *
 
 class TroubleVillage(tk.Tk):
     def __init__(self):
@@ -18,31 +19,33 @@ class TroubleVillage(tk.Tk):
         self._frame.destroy()
         self._frame = new_frame
 
+    def startGame(self, players):
+        #starting game here
+        self.dorp = Village("Dorp 1", 100, 100, 50, players)
+        self.switch_frame(VillagePage)
+
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
-        start_label = tk.Label(self, text="This is the start page")
-        page_1_button = tk.Button(self, text="Open page Village",
-                                  command=lambda: controller.switch_frame(VillagePage))
-        page_2_button = tk.Button(self, text="Open page two",
-                                  command=lambda: controller.switch_frame(PageTwo))
-        page_3_button = tk.Button(self, text="Open page status",
-                                  command=lambda: controller.switch_frame(PageStatus))
-        start_label.pack(side="top", fill="x", pady=10)
+        start_label = tk.Label(self, text="Trouble Village")
+        page_1_button = tk.Button(self, text="Start Game",
+                                  command=lambda: controller.switch_frame(ClassSelectionPage))
         page_1_button.pack()
-        page_2_button.pack()
-        page_3_button.pack()
         self.pack()
 
 
-from model.event import *
 class VillagePage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.controller = controller
+
+        lblTurn = tk.Label(self, text="Turn : " + str(self.controller.dorp.getTurn()))
+
+        lblTurn.config(font=("Times", 44))
+        lblTurn.pack(side="top")
 
         villageImg = tk.PhotoImage(file=r"img/giphy.gif")
         lblVillageImg = tk.Label(self, image=villageImg)
@@ -51,18 +54,38 @@ class VillagePage(tk.Frame):
         lblVillageImgBrand = tk.Label(self, image=villageImgBrand)
         lblVillageImg.image = villageImg
 
-        lblName = tk.Label(self, text="Naam")
+        lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
         lblName.pack(side="top", fill="x", pady=1)
-        lblPopulation = tk.Label(self, text="Bevolking")
+
+        lblPopulation = tk.Label(self, text="Bevolking : " + str(self.controller.dorp.getPopulation()))
         lblPopulation.pack(side="top", fill="x", pady=1)
-        lblWood = tk.Label(self, text="Hout")
+
+        lblWood = tk.Label(self, text="Hout : " + str(self.controller.dorp.getWood()))
         lblWood.pack(side="top", fill="x", pady=1)
 
-        start_button = tk.Button(self, text="Return to start page",
-                                 command=lambda: controller.switch_frame(StartPage))
         lblVillageImg.pack(side="top", fill="x", pady=10)
-        start_button.pack()
+
         self.pack()
+
+class ClassSelectionPage(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+        label1 = tk.Label(self, text="How many players ?")
+        label1.pack()
+
+        self.playerAmount = tk.Entry(self)
+        self.playerAmount.insert(0 , "4")
+        self.playerAmount.pack()
+
+        start_button = tk.Button(self, text="Go!", command=self.setPlayers)
+        start_button.pack()
+
+        self.pack()
+
+    def setPlayers(self):
+        self.controller.startGame(self.playerAmount.get())
 
 
 class PageTwo(tk.Frame):
