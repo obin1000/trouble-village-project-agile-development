@@ -24,6 +24,10 @@ class TroubleVillage(tk.Tk):
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
 
+    def nextTurn(self):
+        self.dorp.nextTurn()
+        self.switch_frame(VillagePage)
+
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -65,6 +69,10 @@ class VillagePage(tk.Frame):
 
         lblVillageImg.pack(side="top", fill="x", pady=10)
 
+        nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
+
+        nextTurn.pack(side="bottom")
+
         self.pack()
 
 class ClassSelectionPage(tk.Frame):
@@ -76,7 +84,7 @@ class ClassSelectionPage(tk.Frame):
         label1.pack()
 
         self.playerAmount = tk.Entry(self)
-        self.playerAmount.insert(0 , "4")
+        self.playerAmount.insert(0 , "4") # default 4 players for now.
         self.playerAmount.pack()
 
         start_button = tk.Button(self, text="Go!", command=self.setPlayers)
@@ -85,32 +93,6 @@ class ClassSelectionPage(tk.Frame):
         self.pack()
 
     def setPlayers(self):
-        self.controller.startGame(self.playerAmount.get())
+        self.controller.startGame(self.playerAmount.get()) #get players and start game.
 
-
-class PageTwo(tk.Frame):
-    def __init__(self, master, controller):
-        tk.Frame.__init__(self, master)
-        self.controller = controller
-
-        page_2_label = tk.Label(self, text="This is page two")
-        start_button = tk.Button(self, text="Return to start page",
-                                 command=lambda: controller.switch_frame(StartPage))
-        page_2_label.pack(side="top", fill="x", pady=10)
-        start_button.pack()
-        self.pack()
-
-class PageStatus(tk.Frame):
-            def __init__(self, master, controller):
-                tk.Frame.__init__(self, master)
-                self.controller = controller
-
-                page_2_label = tk.Label(self, text="This is page status")
-                status_label = tk.Label(self, text="Het dorp is " + VillageEvent.state)
-
-                start_button = tk.Button(self, text="Return to start page",
-                                         command=lambda: controller.switch_frame(StartPage))
-                page_2_label.pack(side="top", fill="x", pady=10)
-                status_label.pack(side="top", fill="x", pady=10)
-                start_button.pack()
-                self.pack()
+    #after playerAmount we should let the players choose their class here.
