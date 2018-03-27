@@ -103,7 +103,10 @@ class ClassSelectionPage(tk.Frame):
         label1.pack()
 
         self.playerAmount = tk.Entry(self)
-        self.playerAmount.insert(0 , "4") # default 4 players for now.
+        self.playerAmount.insert(0, "4") # default 4 players for now.
+        print(self.playerAmount.get())
+
+
         self.playerAmount.pack()
 
         start_button = tk.Button(self, text="Go!", command=self.setPlayers)
@@ -112,6 +115,9 @@ class ClassSelectionPage(tk.Frame):
         self.pack()
 
     def setPlayers(self):
-        self.controller.startGame(self.playerAmount.get()) #get players and start game.
+        if int(self.playerAmount.get()) > 4 or int(self.playerAmount.get()) < 1:
+            print("Aantal spelers moet tussen de 1-4 zijn.")
+        else:
+            self.controller.startGame(self.playerAmount.get()) #get players and start game.
 
     #after playerAmount we should let the players choose their class here.
