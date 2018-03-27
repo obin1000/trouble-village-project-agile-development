@@ -9,7 +9,8 @@ class TroubleVillage(tk.Tk):
         self.container = tk.Frame(self)
 
         self.title('Trouble Village')
-        self.geometry('800x550')
+        self.geometry('800x480')
+        #self.attributes("-fullscreen", True)
         self.resizable(width=False, height=False)
 
         self.container.pack(side="top", fill=None, expand=True)
@@ -69,7 +70,7 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif").zoom(25).subsample(32)
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
 
