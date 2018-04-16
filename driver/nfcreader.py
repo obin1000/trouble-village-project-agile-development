@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 
-import sys
-from pirc522 import RFID
-import signal
-import time
-
-sys.path.insert(0, "/home/pi/pi-rc522/ChipReader")
+from driver.nfchelp.rfid import RFID
 
 
 class NFC:

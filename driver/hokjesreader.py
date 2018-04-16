@@ -15,7 +15,7 @@ class Resources:
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
         #SNeeded pins to in/output with pull-up/pull-down resistor if needed
-        #pins for the touch sensors
+        #pins for the touch sensors ikr
         GPIO.setup(Resources.wood1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(Resources.wood2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(Resources.wood3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
