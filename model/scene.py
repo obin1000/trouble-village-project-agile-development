@@ -33,12 +33,7 @@ class TroubleVillage(tk.Tk):
 
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
-<<<<<<< HEAD
-=======
 
-        includeIO = False
-
->>>>>>> develop
         if includeIO:
             nfcThread = NFC("nfcThread", Village)
             nfcThread.start()
