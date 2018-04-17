@@ -19,18 +19,28 @@ class NFC(threading.Thread):
     def run(self):
         while True:
             #Keeps cpu usage low
-            sleep(1)
+            sleep(0.2)
             # Request tag
             (error, data) = self.rdr.request()
             if not error:
                 (error, uid) = self.rdr.anticoll()
                 if not error:
-                    print("Card read UID: " + str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]))
+                    self.checkCard(uid)
+                    sleep(2)
 
     def arrayToString(self, array):
         return ''.join(str(e) for e in array)
 
     def checkCard(self, uid):
-        print(NFC.arrayToString(uid))
+        card = self.arrayToString(uid)
+        print(card)
+        if card == "25213744934":
+            print("emmer water G")
+        elif card == "2529811922152":
+            print("hout mawn")
+        elif card == "68169399106":
+            print("AAAAAAH VUUUUUUR!!!")
+        elif card == "180439599163":
+            print("AAAAAAAH WATER!!!!")
 
 
