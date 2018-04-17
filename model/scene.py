@@ -27,6 +27,13 @@ class TroubleVillage(tk.Tk):
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
 
+        includeIO = True
+
+        if includeIO:
+            from driver.nfcreader import NFC
+            nfcThread = NFC("nfcThread", Village)
+            nfcThread.start()
+
     def update(self):
         #call this function to refresh the resources.
         self.switch_frame(VillagePage)
@@ -70,9 +77,9 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif").zoom(25).subsample(32)
-        lblVillageImg = tk.Label(self, image=villageImg)
-        lblVillageImg.image = villageImg
+        #villageImg = tk.PhotoImage(file="img/village.gif")
+        #lblVillageImg = tk.Label(image=villageImg)
+        #lblVillageImg.pack(side="top", fill="x", pady=10)
 
         lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
         lblName.pack(side="top", fill="x", pady=1)
@@ -86,13 +93,12 @@ class VillagePage(tk.Frame):
         lblWater = tk.Label(self, text="Water : " + str(self.controller.dorp.getWater()))
         lblWater.pack(side="top", fill="x", pady=1)
 
-        lblVillageImg.pack(side="top", fill="x", pady=10)
-
         nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
 
         nextTurn.pack(side="bottom")
 
         self.pack()
+
 
 class ClassSelectionPage(tk.Frame):
     def __init__(self, master, controller):
@@ -105,7 +111,6 @@ class ClassSelectionPage(tk.Frame):
         self.playerAmount = tk.Entry(self)
         self.playerAmount.insert(0, "4") # default 4 players for now.
         print(self.playerAmount.get())
-
 
         self.playerAmount.pack()
 
