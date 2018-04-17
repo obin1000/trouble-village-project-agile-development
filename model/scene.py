@@ -33,6 +33,12 @@ class TroubleVillage(tk.Tk):
 
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
+<<<<<<< HEAD
+=======
+
+        includeIO = False
+
+>>>>>>> develop
         if includeIO:
             nfcThread = NFC("nfcThread", Village)
             nfcThread.start()
@@ -94,9 +100,11 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        #villageImg = tk.PhotoImage(file="img/village.gif")
-        #lblVillageImg = tk.Label(image=villageImg)
-        #lblVillageImg.pack(side="top", fill="x", pady=10)
+        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+        lblVillageImg = tk.Label(self, image=villageImg)
+        lblVillageImg.image = villageImg
+        lblVillageImg.pack(side="top", fill="x", pady=10)
+
 
         lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
         lblName.pack(side="top", fill="x", pady=1)
