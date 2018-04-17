@@ -1,4 +1,4 @@
-includeIO = True
+includeIO = False
 
 import tkinter as tk
 from model.event import *
@@ -21,7 +21,7 @@ class TroubleVillage(tk.Tk):
         self.container.pack(side="top", fill=None, expand=True)
         self._frame = StartPage(master=self.container, controller=self)
 
-        self.spullen = Resources()
+        #self.spullen = Resources()
 
     def switch_frame(self, frame_class):
         new_frame = frame_class(master=self.container, controller=self)
@@ -95,7 +95,16 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
+        img = "2"
+        if img == "1":
+            villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
+        elif img == "2":
+            villageImg = tk.PhotoImage(file=r"img/Fire.gif", format="gif")
+        elif img == "3":
+            villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+        elif img == "4":
+            villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
         lblVillageImg.pack(side="top", fill="x", pady=10)
