@@ -44,6 +44,7 @@ class Village:
     def getWater(self):
         return self.water
 
+    #for next turn use the one in scene
     def nextTurn(self):
         if(self.population > 0):
             self.turn += 1

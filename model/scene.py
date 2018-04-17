@@ -21,9 +21,6 @@ class TroubleVillage(tk.Tk):
         self.container.pack(side="top", fill=None, expand=True)
         self._frame = StartPage(master=self.container, controller=self)
 
-        if includeIO:
-            self.spullen = Resources()
-
     def switch_frame(self, frame_class):
         new_frame = frame_class(master=self.container, controller=self)
         self._frame.destroy()
@@ -36,13 +33,15 @@ class TroubleVillage(tk.Tk):
         self.switch_frame(VillagePage)
 
         if includeIO:
-            nfcThread = NFC("nfcThread", Village)
+            nfcThread = NFC("nfcThread", Village, self)
             nfcThread.start()
+            self.spullen = Resources()
 
     def update(self):
         #call this function to refresh the resources.
         self.switch_frame(VillagePage)
 
+    #for next turn use this one
     def nextTurn(self):
         # turn logic here.
         if includeIO:
@@ -100,7 +99,7 @@ class VillagePage(tk.Frame):
         if img == "1":
             villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
         elif img == "2":
-            villageImg = tk.PhotoImage(file=r"img/Fire.gif", format="gif")
+            villageImg = tk.PhotoImage(file=r"PAD/img/Fire.gif", format="gif")
         elif img == "3":
             villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
         elif img == "4":
