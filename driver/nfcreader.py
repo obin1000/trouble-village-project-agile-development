@@ -26,7 +26,7 @@ class NFC(threading.Thread):
                 (error, uid) = self.rdr.anticoll()
                 if not error:
                     self.checkCard(uid)
-                    sleep(2)
+                    sleep(8)
 
     def arrayToString(self, array):
         return ''.join(str(e) for e in array)

@@ -1,7 +1,12 @@
+includeIO = True
+
 import tkinter as tk
 from model.event import *
 from model.village import *
 import random
+if includeIO:
+    from driver.nfcreader import NFC
+    from driver.hokjesreader import Resources
 
 class TroubleVillage(tk.Tk):
     def __init__(self):
@@ -16,6 +21,8 @@ class TroubleVillage(tk.Tk):
         self.container.pack(side="top", fill=None, expand=True)
         self._frame = StartPage(master=self.container, controller=self)
 
+        self.spullen = Resources()
+
     def switch_frame(self, frame_class):
         new_frame = frame_class(master=self.container, controller=self)
         self._frame.destroy()
@@ -26,11 +33,7 @@ class TroubleVillage(tk.Tk):
 
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
-
-        includeIO = True
-
         if includeIO:
-            from driver.nfcreader import NFC
             nfcThread = NFC("nfcThread", Village)
             nfcThread.start()
 
@@ -40,6 +43,20 @@ class TroubleVillage(tk.Tk):
 
     def nextTurn(self):
         # turn logic here.
+        if includeIO:
+            position = self.spullen.getOccupiedResources()
+            if position[0]:
+                self.dorp.setWood(self.dorp.getWood() + 100)
+            if position[1]:
+                self.dorp.setWood(self.dorp.getWood() + 200)
+            if position[2]:
+                self.dorp.setWood(self.dorp.getWood() + 300)
+            if position[3]:
+                self.dorp.setWater(self.dorp.getWater() + 100)
+            if position[4]:
+                self.dorp.setWater(self.dorp.getWater() + 200)
+            if position[5]:
+                self.dorp.setWater(self.dorp.getWater() + 300)
 
         # subtract a number between 0 and 5 from the population count per turn.
         self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(0,5))
