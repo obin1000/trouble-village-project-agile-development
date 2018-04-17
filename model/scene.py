@@ -95,7 +95,7 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+        villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
         lblVillageImg.pack(side="top", fill="x", pady=10)
