@@ -1,4 +1,4 @@
-includeIO = True
+includeIO = False
 
 import tkinter as tk
 from model.event import *
@@ -21,7 +21,8 @@ class TroubleVillage(tk.Tk):
         self.container.pack(side="top", fill=None, expand=True)
         self._frame = StartPage(master=self.container, controller=self)
 
-        self.spullen = Resources()
+        if includeIO:
+            self.spullen = Resources()
 
     def switch_frame(self, frame_class):
         new_frame = frame_class(master=self.container, controller=self)
