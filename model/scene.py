@@ -99,7 +99,7 @@ class VillagePage(tk.Frame):
         if img == "1":
             villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
         elif img == "2":
-            villageImg = tk.PhotoImage(file=r"PAD/img/Fire.gif", format="gif")
+            villageImg = tk.PhotoImage(file=r"img/Fire.gif", format="gif")
         elif img == "3":
             villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
         elif img == "4":
