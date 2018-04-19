@@ -90,20 +90,12 @@ class VillagePage(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
-        lblTurn = tk.Label(self, text="Turn : " + str(self.controller.dorp.getTurn()))
 
+        lblTurn = tk.Label(self, text="Turn : " + str(self.controller.dorp.getTurn()))
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        img = "2"
-        if img == "1":
-            villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
-        elif img == "2":
-            villageImg = tk.PhotoImage(file=r"img/Fire.gif", format="gif")
-        elif img == "3":
-            villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
-        elif img == "4":
-            villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+        villageImg = tk.PhotoImage(file=self.controller.dorp.getImage(), format="gif")
 
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
