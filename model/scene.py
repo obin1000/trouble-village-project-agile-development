@@ -95,15 +95,20 @@ class VillagePage(tk.Frame):
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
-        img = "2"
-        if img == "1":
-            villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
-        elif img == "2":
+        if includeIO:
+            card = NFC.getCard()
+        else:
+            card = ''
+
+
+        if card == "68169399106":
             villageImg = tk.PhotoImage(file=r"img/Fire.gif", format="gif")
-        elif img == "3":
+        elif card == "3":
             villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
-        elif img == "4":
+        elif card == "4":
             villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
+        else:
+            villageImg = tk.PhotoImage(file=r"img/Base.png", format="png")
 
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
