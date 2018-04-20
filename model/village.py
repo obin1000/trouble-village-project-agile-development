@@ -21,6 +21,7 @@ class Village:
         self.state = state
 
     def getImage(self):
+        villageImg = "404"
         if self.state == 0:
             villageImg = "img/Base.gif"
         elif self.state == 1:
