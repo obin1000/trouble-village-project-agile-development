@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 # Abstracte weergaven van een dorp
 class VillageEvent:
     # Constructor voor Village
@@ -27,6 +28,7 @@ class Burn(VillageEvent):
             self.main.update()
         else:
             print("Not enough water! , you'll need to gather some first!")
+
 
 class Flood():
     def __init__():

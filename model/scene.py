@@ -8,6 +8,7 @@ if includeIO:
     from driver.nfcreader import NFC
     from driver.hokjesreader import Resources
 
+
 class TroubleVillage(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
@@ -27,7 +28,7 @@ class TroubleVillage(tk.Tk):
         self._frame = new_frame
 
     def startGame(self, players):
-        #starting game here.
+        # starting game here.
 
         self.dorp = Village("Dorp 1", 100, 100, 50, players)
         self.switch_frame(VillagePage)
@@ -38,10 +39,10 @@ class TroubleVillage(tk.Tk):
             self.spullen = Resources()
 
     def update(self):
-        #call this function to refresh the resources.
+        # call this function to refresh the resources.
         self.switch_frame(VillagePage)
 
-    #for next turn use this one
+    # for next turn use this one
     def nextTurn(self):
         # turn logic here.
         if includeIO:
@@ -62,16 +63,13 @@ class TroubleVillage(tk.Tk):
         # subtract a number between 0 and 5 from the population count per turn.
         self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(0,5))
 
-        #if there's an event active we apply a double population penalty.
+        # if there's an event active we apply a double population penalty.
         if(self.dorp.getState() != 0):
             self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(5,10))
 
-        #TEST: set the village on fire.
-        # if(self.dorp.getState() != 1):
-        #     Burn(self.dorp, self)
-
         self.dorp.nextTurn()
         self.update()
+
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -90,17 +88,14 @@ class VillagePage(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
-
         lblTurn = tk.Label(self, text="Turn : " + str(self.controller.dorp.getTurn()))
         lblTurn.config(font=("Times", 44))
         lblTurn.pack(side="top")
 
         villageImg = tk.PhotoImage(file=self.controller.dorp.getImage(), format="gif")
-
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
         lblVillageImg.pack(side="top", fill="x", pady=10)
-
 
         lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
         lblName.pack(side="top", fill="x", pady=1)
