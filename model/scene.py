@@ -67,8 +67,8 @@ class TroubleVillage(tk.Tk):
             self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(5,10))
 
         #TEST: set the village on fire.
-        if(self.dorp.getState() != 1):
-            Burn(self.dorp, self)
+        # if(self.dorp.getState() != 1):
+        #     Burn(self.dorp, self)
 
         self.dorp.nextTurn()
         self.update()
