@@ -45,7 +45,3 @@ class NFC(threading.Thread):
         elif card == "180439599163":
             print("AAAAAAAH WATER!!!!")
 
-    def getCard(self, uid):
-        card = self.arrayToString(uid)
-        return card
-
