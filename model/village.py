@@ -9,7 +9,6 @@ class Village:
         self.players = players
         self.turn = 0
         self.state = 0
-        self.image = "img/Base.gif"
 
     def getPopulation(self):
         return self.population
@@ -20,17 +19,17 @@ class Village:
 
     def setState(self, state):
         self.state = state
-        return self.state
 
-    def changeImage(self, state):
-        if state == 1:
+    def getImage(self):
+        if self.state == 0:
             villageImg = "img/Base.gif"
-        elif state == 2:
+        elif self.state == 1:
             villageImg = "img/Fire.gif"
-        elif state == 3:
+        elif self.state == 2:
             villageImg = "img/giphy.gif"
-        elif state == 4:
+        elif self.state == 3:
             villageImg = "img/giphy.gif"
+        return villageImg
 
     def setPopulation(self, population):
         self.population = population
@@ -54,9 +53,6 @@ class Village:
 
     def getWater(self):
         return self.water
-
-    def getImage(self):
-        return self.image
 
     #for next turn use the one in scene
     def nextTurn(self):

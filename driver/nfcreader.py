@@ -41,7 +41,7 @@ class NFC(threading.Thread):
         elif card == "2529811922152":
             print("hout mawn")
         elif card == "68169399106":
-            print("AAAAAAH VUUUUUUR!!!")
+            self.dorp.setState(1)
         elif card == "180439599163":
-            print("AAAAAAAH WATER!!!!")
+            self.dorp.setState(2)
 

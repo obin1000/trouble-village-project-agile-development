@@ -33,7 +33,7 @@ class TroubleVillage(tk.Tk):
         self.switch_frame(VillagePage)
 
         if includeIO:
-            nfcThread = NFC("nfcThread", Village, self)
+            nfcThread = NFC("nfcThread", self.dorp, self)
             nfcThread.start()
             self.spullen = Resources()
 
