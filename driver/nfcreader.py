@@ -28,7 +28,7 @@ class NFC(threading.Thread):
                 (error, uid) = self.rdr.anticoll()
                 if not error:
                     self.checkCard(uid)
-                    sleep(8)
+                    sleep(4)
 
     def arrayToString(self, array):
         return ''.join(str(e) for e in array)
@@ -36,10 +36,10 @@ class NFC(threading.Thread):
     def checkCard(self, uid):
         card = self.arrayToString(uid)
         if card == "25213744934": # waterkaart
-            self.dorp.setWater(100)
+            self.dorp.addWater(100)
             self.troublevillage.nextTurn()
         elif card == "2529811922152": # houtkaart
-            self.dorp.setWood(100)
+            self.dorp.addWood(100)
             self.troublevillage.nextTurn()
         elif card == "68169399106": # bosbrandkaart
             self.dorp.setState(1)
@@ -47,4 +47,8 @@ class NFC(threading.Thread):
         elif card == "180439599163": # overstromingkaart
             self.dorp.setState(2)
             self.troublevillage.nextTurn()
+        elif card == "25061219217197": # well
+            print("building well")
+        elif card == "18824821821771": # stockpile
+            print("buidling stockpile")
 

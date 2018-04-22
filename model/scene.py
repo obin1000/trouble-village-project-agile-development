@@ -48,17 +48,17 @@ class TroubleVillage(tk.Tk):
         if includeIO:
             position = self.spullen.getOccupiedResources()
             if position[0]:
-                self.dorp.setWood(self.dorp.getWood() + 100)
+                self.dorp.addWood(100)
             if position[1]:
-                self.dorp.setWood(self.dorp.getWood() + 200)
+                self.dorp.addWood(200)
             if position[2]:
-                self.dorp.setWood(self.dorp.getWood() + 300)
+                self.dorp.addWood(300)
             if position[3]:
-                self.dorp.setWater(self.dorp.getWater() + 100)
+                self.dorp.addWater(100)
             if position[4]:
-                self.dorp.setWater(self.dorp.getWater() + 200)
+                self.dorp.addWater(200)
             if position[5]:
-                self.dorp.setWater(self.dorp.getWater() + 300)
+                self.dorp.addWater(300)
 
         # subtract a number between 0 and 5 from the population count per turn.
         self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(0,5))

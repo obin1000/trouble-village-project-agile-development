@@ -9,6 +9,8 @@ class Village:
         self.players = players
         self.turn = 0
         self.state = 0
+        self.well = False
+        self.stockpile = False
 
     def getPopulation(self):
         return self.population
@@ -41,16 +43,34 @@ class Village:
     def getName(self):
         return self.name
 
-    def setWood(self, wood):
+    def addWood(self, wood):
+        if self.stockpile:
+            wood *= 1.5
+
         self.wood += wood
+
+        if self.wood < 0:
+            self.wood = 0
+
+    def setWood(self, wood):
+        self.wood = wood
         if self.wood < 0:
             self.wood = 0
 
     def getWood(self):
         return self.wood
 
-    def setWater(self, water):
+    def addWater(self, water):
+        if self.well:
+            water *= 1.5
+
         self.water += water
+
+        if self.water < 0:
+            self.water = 0
+
+    def setWater(self, water):
+        self.water = water
         if self.water < 0:
             self.water = 0
 
