@@ -34,7 +34,7 @@ class Village:
 
     def setPopulation(self, population):
         self.population = population
-        if(self.population < 0):
+        if self.population < 0:
             print("Game over!")
             self.population = 0
 
@@ -42,14 +42,16 @@ class Village:
         return self.name
 
     def setWood(self, wood):
-        self.wood = wood
+        self.wood += wood
+        if self.wood < 0:
+            self.wood = 0
 
     def getWood(self):
         return self.wood
 
     def setWater(self, water):
-        self.water = water
-        if(self.water < 0):
+        self.water += water
+        if self.water < 0:
             self.water = 0
 
     def getWater(self):
@@ -57,7 +59,7 @@ class Village:
 
     #for next turn use the one in scene
     def nextTurn(self):
-        if(self.population > 0):
+        if self.population > 0:
             self.turn += 1
             return self.turn
 

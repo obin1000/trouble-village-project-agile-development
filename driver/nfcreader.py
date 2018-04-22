@@ -36,12 +36,15 @@ class NFC(threading.Thread):
     def checkCard(self, uid):
         card = self.arrayToString(uid)
         if card == "25213744934": # waterkaart
-            self.dorp.setWater(self.dorp.getWater() + 100)
+            self.dorp.setWater(100)
+            self.troublevillage.nextTurn()
         elif card == "2529811922152": # houtkaart
-            self.dorp.setWood(self.dorp.getWood() + 100)
+            self.dorp.setWood(100)
+            self.troublevillage.nextTurn()
         elif card == "68169399106": # bosbrandkaart
             self.dorp.setState(1)
+            self.troublevillage.nextTurn()
         elif card == "180439599163": # overstromingkaart
             self.dorp.setState(2)
-        self.troublevillage.nextTurn()
+            self.troublevillage.nextTurn()
 
