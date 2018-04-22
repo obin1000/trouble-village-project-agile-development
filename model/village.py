@@ -22,6 +22,12 @@ class Village:
     def setState(self, state):
         self.state = state
 
+    def setWell(self, value):
+        self.well = value
+
+    def setStockpile(self, value):
+        self.stockpile = value
+
     def getImage(self):
         villageImg = "404"
         if self.state == 0:
