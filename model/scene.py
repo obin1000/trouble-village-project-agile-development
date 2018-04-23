@@ -4,8 +4,6 @@ import tkinter as tk
 from model.event import *
 from model.village import *
 import random
-import time
-import os
 if includeIO:
     from driver.nfcreader import NFC
     from driver.hokjesreader import Resources
@@ -67,7 +65,6 @@ class TroubleVillage(tk.Tk):
         if(self.dorp.getState() != 0):
             self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(5,10))
 
-
         self.dorp.nextTurn()
         self.update()
 
@@ -119,30 +116,14 @@ class VillagePage(tk.Frame):
         canvas.icon_pop = icon_pop
         canvas.create_image(550, 45, image=canvas.icon_pop, anchor="nw")
 
-
         canvas.create_text(400,20,fill=resource_color,font=resource_font,text="Turn : "+ str(current_turn))
         canvas.create_text(200,60,fill=resource_color,font=resource_font,text=""+ str(current_wood))
         canvas.create_text(400,60,fill=resource_color,font=resource_font,text=""+ str(current_water))
         canvas.create_text(600,60,fill=resource_color,font=resource_font,text=""+ str(current_pop))
 
+        #nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
+        #nextTurn.pack(side="bottom")
 
-        lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
-        #lblName.grid(row=4, column=column_labels)
-
-        lblPopulation = tk.Label(self, text="Bevolking : " + str(self.controller.dorp.getPopulation()))
-        #lblPopulation.grid(row=5,column=column_labels)
-        
-        lblWood = tk.Label(self, text="Hout : " + str(self.controller.dorp.getWood()))
-        #lblWood.grid(row=6,column=column_labels)
-
-        lblWater = tk.Label(self, text="Water : " + str(self.controller.dorp.getWater()))
-        #lblWater.grid(row=7,column=column_labels)
-
-        nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
-
-        nextTurn.pack(side="bottom")
-
-       
         self.pack()
 
 

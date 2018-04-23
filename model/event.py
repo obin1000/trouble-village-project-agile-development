@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 # Abstracte weergaven van een dorp
 class VillageEvent:
     # Constructor voor Village
