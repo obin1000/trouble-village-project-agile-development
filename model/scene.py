@@ -83,7 +83,7 @@ class StartPage(tk.Frame):
 
 class VillagePage(tk.Frame):
     def __init__(self, master, controller):
-        tk.Frame.__init__(self, master,bg="black")
+        tk.Frame.__init__(self, master, bg="black")
         self.controller = controller
 
         dorp = self.controller.dorp
@@ -98,7 +98,7 @@ class VillagePage(tk.Frame):
         canvas = tk.Canvas(self, width=800, height=480, bg="white")
         canvas.pack()
 
-        bgimg = tk.PhotoImage(file='img/test.png')
+        bgimg = tk.PhotoImage(file='img/background.png')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
