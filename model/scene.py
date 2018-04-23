@@ -74,30 +74,30 @@ class VillagePage(tk.Frame):
 
         lblTurn = tk.Label(self, text="Turn : " + str(self.controller.dorp.getTurn()))
 
-        lblTurn.config(font=("Times", 44))
-        lblTurn.pack(side="top")
+        column_labels = 5;
+        lblTurn.config(font=("Arial", 30))
+        lblTurn.grid(row=1,column=column_labels)
+
+        lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
+        lblName.grid(row=2, column=column_labels)
+
+        lblPopulation = tk.Label(self, text="Bevolking : " + str(self.controller.dorp.getPopulation()))
+        lblPopulation.grid(row=3,column=column_labels)
+        
+        lblWood = tk.Label(self, text="Hout : " + str(self.controller.dorp.getWood()))
+        lblWood.grid(row=4,column=column_labels)
+
+        lblWater = tk.Label(self, text="Water : " + str(self.controller.dorp.getWater()))
+        lblWater.grid(row=5,column=column_labels)
 
         villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
         lblVillageImg = tk.Label(self, image=villageImg)
         lblVillageImg.image = villageImg
-        lblVillageImg.pack(side="top", fill="x", pady=10)
-
-
-        lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
-        lblName.pack(side="top", fill="x", pady=1)
-
-        lblPopulation = tk.Label(self, text="Bevolking : " + str(self.controller.dorp.getPopulation()))
-        lblPopulation.pack(side="top", fill="x", pady=1)
-
-        lblWood = tk.Label(self, text="Hout : " + str(self.controller.dorp.getWood()))
-        lblWood.pack(side="top", fill="x", pady=1)
-
-        lblWater = tk.Label(self, text="Water : " + str(self.controller.dorp.getWater()))
-        lblWater.pack(side="top", fill="x", pady=1)
-
+        lblVillageImg.grid(row=2,column=5)
+        
         nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
 
-        nextTurn.pack(side="bottom")
+        nextTurn.grid(row=6,column=1)
 
         self.pack()
 

@@ -18,11 +18,12 @@ class Burn(VillageEvent):
         self.dorp.setState(1)
 
         print("Your village is on fire! You'll need : "+ str(self.requirement) +"L water to put it out.")
+
         nextTurn = tk.Button(main, text="Put out fire!", command=self.fix)
-        nextTurn.pack(side="bottom" , pady="1")
+        nextTurn.place(x=50,y=50)
 
     def fix(self):
-        if(self.dorp.getWater() >= 200):
+        if(self.dorp.getWater() >= self.requirement):
             self.dorp.setWater(self.dorp.getWater() - self.requirement)
             self.main.update()
         else:
