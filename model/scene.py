@@ -15,7 +15,7 @@ class TroubleVillage(tk.Tk):
         self.container = tk.Frame(self)
 
         self.title('Trouble Village')
-        self.geometry('800x500')
+        self.geometry('800x480')
 
         self.container.pack(side="top", expand=1, fill="x")
         self._frame = StartPage(master=self.container, controller=self)
