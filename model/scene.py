@@ -1,7 +1,15 @@
+includeIO = False
+
 import tkinter as tk
 from model.event import *
 from model.village import *
 import random
+import time
+import os
+if includeIO:
+    from driver.nfcreader import NFC
+    from driver.hokjesreader import Resources
+
 
 class TroubleVillage(tk.Tk):
     def __init__(self):
@@ -9,11 +17,9 @@ class TroubleVillage(tk.Tk):
         self.container = tk.Frame(self)
 
         self.title('Trouble Village')
-        self.geometry('800x480')
-        #self.attributes("-fullscreen", True)
-        self.resizable(width=False, height=False)
+        self.geometry('800x500')
 
-        self.container.pack(side="top", fill=None, expand=True)
+        self.container.pack(side="top", expand=1, fill="x")
         self._frame = StartPage(master=self.container, controller=self)
 
     def switch_frame(self, frame_class):
@@ -22,38 +28,49 @@ class TroubleVillage(tk.Tk):
         self._frame = new_frame
 
     def startGame(self, players):
-        #starting game here.
+        # starting game here.
 
-        self.dorp = Village("Dorp 1", 100, 100, 50, players)
+        self.dorp = Village("Trouble Village", 100, 100, 50, players)
         self.switch_frame(VillagePage)
-
-        includeIO = False
 
         if includeIO:
-            from driver.nfcreader import NFC
-            nfcThread = NFC("nfcThread", Village)
+            nfcThread = NFC("nfcThread", self.dorp, self)
             nfcThread.start()
+            self.spullen = Resources()
 
     def update(self):
-        #call this function to refresh the resources.
+        # call this function to refresh the resources.
         self.switch_frame(VillagePage)
 
+    # for next turn use this one
     def nextTurn(self):
         # turn logic here.
+        if includeIO:
+            position = self.spullen.getOccupiedResources()
+            if position[0]:
+                self.dorp.addWood(100)
+            if position[1]:
+                self.dorp.addWood(200)
+            if position[2]:
+                self.dorp.addWood(300)
+            if position[3]:
+                self.dorp.addWater(100)
+            if position[4]:
+                self.dorp.addWater(200)
+            if position[5]:
+                self.dorp.addWater(300)
 
         # subtract a number between 0 and 5 from the population count per turn.
         self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(0,5))
 
-        #if there's an event active we apply a double population penalty.
+        # if there's an event active we apply a double population penalty.
         if(self.dorp.getState() != 0):
             self.dorp.setPopulation(self.dorp.getPopulation() - random.randint(5,10))
 
-        #TEST: set the village on fire.
-        if(self.dorp.getState() != 1):
-            Burn(self.dorp, self)
 
         self.dorp.nextTurn()
         self.update()
+
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -69,36 +86,63 @@ class StartPage(tk.Frame):
 
 class VillagePage(tk.Frame):
     def __init__(self, master, controller):
-        tk.Frame.__init__(self, master)
+        tk.Frame.__init__(self, master,bg="black")
         self.controller = controller
 
-        lblTurn = tk.Label(self, text="Turn : " + str(self.controller.dorp.getTurn()))
+        dorp = self.controller.dorp
+        current_turn = dorp.getTurn()
+        current_wood= dorp.getWood()
+        current_water= dorp.getWater()
+        current_pop = dorp.getPopulation()
 
-        column_labels = 5;
-        lblTurn.config(font=("Arial", 30))
-        lblTurn.grid(row=1,column=column_labels)
+        resource_font = "Times 20 bold"
+        resource_color = "black"
+
+        canvas = tk.Canvas(self, width=800, height=480, bg="white")
+        canvas.pack()
+
+        bgimg = tk.PhotoImage(file='img/test.png')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+        canvas.create_rectangle(0,40,800,80, fill="white")
+
+        icon_water = tk.PhotoImage(file='img/water.png')
+        canvas.icon_water = icon_water
+        canvas.create_image(345, 45, image=canvas.icon_water, anchor="nw")
+
+        icon_wood = tk.PhotoImage(file='img/logs.png')
+        canvas.icon_wood = icon_wood
+        canvas.create_image(145, 45, image=canvas.icon_wood, anchor="nw")
+
+        icon_pop = tk.PhotoImage(file='img/pop.png')
+        canvas.icon_pop = icon_pop
+        canvas.create_image(550, 45, image=canvas.icon_pop, anchor="nw")
+
+
+        canvas.create_text(400,20,fill=resource_color,font=resource_font,text="Turn : "+ str(current_turn))
+        canvas.create_text(200,60,fill=resource_color,font=resource_font,text=""+ str(current_wood))
+        canvas.create_text(400,60,fill=resource_color,font=resource_font,text=""+ str(current_water))
+        canvas.create_text(600,60,fill=resource_color,font=resource_font,text=""+ str(current_pop))
+
 
         lblName = tk.Label(self, text="Naam : " + str(self.controller.dorp.getName()))
-        lblName.grid(row=2, column=column_labels)
+        #lblName.grid(row=4, column=column_labels)
 
         lblPopulation = tk.Label(self, text="Bevolking : " + str(self.controller.dorp.getPopulation()))
-        lblPopulation.grid(row=3,column=column_labels)
+        #lblPopulation.grid(row=5,column=column_labels)
         
         lblWood = tk.Label(self, text="Hout : " + str(self.controller.dorp.getWood()))
-        lblWood.grid(row=4,column=column_labels)
+        #lblWood.grid(row=6,column=column_labels)
 
         lblWater = tk.Label(self, text="Water : " + str(self.controller.dorp.getWater()))
-        lblWater.grid(row=5,column=column_labels)
+        #lblWater.grid(row=7,column=column_labels)
 
-        villageImg = tk.PhotoImage(file=r"img/giphy.gif", format="gif")
-        lblVillageImg = tk.Label(self, image=villageImg)
-        lblVillageImg.image = villageImg
-        lblVillageImg.grid(row=2,column=5)
-        
         nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
 
-        nextTurn.grid(row=6,column=1)
+        nextTurn.pack(side="bottom")
 
+       
         self.pack()
 
 

@@ -4,34 +4,30 @@ import time
 
 
 class Resources:
-    wood1 = 3
-    wood2 = 5
-    wood3 = 7
+    hout1 = 7
+    hout2 = 3
+    hout3 = 5
 
-    water1 = 11
-    water2 = 13
+    water1 = 13
+    water2 = 11
     water3 = 15
     #Constructor for basic gpio settings
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
-        #SNeeded pins to in/output with pull-up/pull-down resistor if needed
-        #pins for the touch sensors ikr
-        GPIO.setup(Resources.wood1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(Resources.wood2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(Resources.wood3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        #Needed pins to in/output with pull-up/pull-down resistor if needed
+        #pins for the touch sensors
+        GPIO.setup(Resources.hout1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(Resources.hout2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(Resources.hout3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
         GPIO.setup(Resources.water1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(Resources.water2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(Resources.water3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-
-        #pins for the leds
-
-
         #Enable interrupts for touch sensors
-        GPIO.add_event_detect(Resources.wood1, GPIO.BOTH, callback=self.eenOfAndereCallback)
-        GPIO.add_event_detect(Resources.wood2, GPIO.BOTH, callback=self.eenOfAndereCallback)
-        GPIO.add_event_detect(Resources.wood3, GPIO.BOTH, callback=self.eenOfAndereCallback)
+        GPIO.add_event_detect(Resources.hout1, GPIO.BOTH, callback=self.eenOfAndereCallback)
+        GPIO.add_event_detect(Resources.hout2, GPIO.BOTH, callback=self.eenOfAndereCallback)
+        GPIO.add_event_detect(Resources.hout3, GPIO.BOTH, callback=self.eenOfAndereCallback)
 
         GPIO.add_event_detect(Resources.water1, GPIO.BOTH, callback=self.eenOfAndereCallback)
         GPIO.add_event_detect(Resources.water2, GPIO.BOTH, callback=self.eenOfAndereCallback)
@@ -70,15 +66,5 @@ class Resources:
                 GPIO.output(18, GPIO.HIGH)
 
     def getOccupiedResources(self):
-        Occupied = [GPIO.input(Resources.wood1), GPIO.input(Resources.wood2), GPIO.input(Resources.wood3), GPIO.input(Resources.water1), GPIO.input(Resources.water2), GPIO.input(Resources.water3)]
+        Occupied = [GPIO.input(Resources.hout1), GPIO.input(Resources.hout2), GPIO.input(Resources.hout3), GPIO.input(Resources.water1), GPIO.input(Resources.water2), GPIO.input(Resources.water3)]
         return Occupied
-
-
-kno = Resources()
-i = 0
-while True:
-    print("aww yies boy " + str(i))
-    i += 1
-    time.sleep(2)
-    for occu in kno.getOccupiedResources():
-        print(occu)
