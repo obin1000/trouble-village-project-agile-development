@@ -17,7 +17,7 @@ class TroubleVillage(tk.Tk):
         self.title('Trouble Village')
         self.geometry('800x480')
 
-        self.container.pack(side="top", expand=1, fill="x")
+        self.container.pack(side="top", expand="1", fill="x")
         self._frame = StartPage(master=self.container, controller=self)
 
     def switch_frame(self, frame_class):

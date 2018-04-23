@@ -2,6 +2,7 @@
 
 from driver.nfchelp.rfid import RFID
 import threading
+from model.event import *
 from model.scene import *
 from time import sleep
 
@@ -42,13 +43,18 @@ class NFC(threading.Thread):
             self.dorp.addWood(200)
             self.troublevillage.nextTurn()
         elif card == "68169399106":  # bosbrandkaart
-            self.dorp.setState(1)
+            Burn(self.dorp,self.troublevillage)
             self.troublevillage.nextTurn()
         elif card == "180439599163":  # overstromingkaart
-            self.dorp.setState(2)
+            Flood(self.dorp,self.troublevillage)
             self.troublevillage.nextTurn()
         elif card == "25061219217197":  # wellbuilding
             self.dorp.setWell(True)
         elif card == "18824821821771":  # stockpilebuilding
             self.dorp.setStockpile(True)
+
+    def testCard(self):
+            Burn(self.dorp,self.troublevillage)
+            self.troublevillage.nextTurn()
+        
 
