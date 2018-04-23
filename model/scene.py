@@ -17,6 +17,7 @@ class TroubleVillage(tk.Tk):
         self.title('Trouble Village')
         self.geometry('800x480')
 
+        self.resizable(width=False, height=False)
         self.container.pack(side="top", expand="1", fill="x")
         self._frame = StartPage(master=self.container, controller=self)
 
@@ -121,8 +122,8 @@ class VillagePage(tk.Frame):
         canvas.create_text(400,60,fill=resource_color,font=resource_font,text=""+ str(current_water))
         canvas.create_text(600,60,fill=resource_color,font=resource_font,text=""+ str(current_pop))
 
-        #nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
-        #nextTurn.pack(side="bottom")
+        nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
+        nextTurn.pack(side="bottom")
 
         self.pack()
 
