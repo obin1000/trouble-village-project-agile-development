@@ -50,10 +50,11 @@ class NFC(threading.Thread):
             self.troublevillage.nextTurn()
         elif card == "164989799196":  # populatie kaart
             self.dorp.addPopulation(50)
-            self.troublevillage.update()
+            self.troublevillage.nextTurn()
         elif card == "124173115221127":     # dode kaart
             self.dorp.lowerPopulation(30)
-            self.troublevillage.update()
+            self.troublevillage.nextTurn()
+
         elif card == "25061219217197":  # wellbuilding
             self.dorp.buildWell()
             self.troublevillage.update()
