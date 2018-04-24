@@ -30,7 +30,7 @@ class Village:
         else:
             return False
 
-    def buildStockpile(self, value):
+    def buildStockpile(self):
         if self.water - 500 >= 0:
             self.water -= 500
             self.stockpile = True
