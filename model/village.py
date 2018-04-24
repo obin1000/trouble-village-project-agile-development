@@ -22,11 +22,21 @@ class Village:
     def setState(self, state):
         self.state = state
 
-    def setWell(self, value):
-        self.well = value
+    def buildWell(self):
+        if self.wood - 500 >= 0:
+            self.wood -= 500
+            self.well = True
+            return True
+        else:
+            return False
 
-    def setStockpile(self, value):
-        self.stockpile = value
+    def buildStockpile(self, value):
+        if self.water - 500 >= 0:
+            self.water -= 500
+            self.stockpile = True
+            return True
+        else:
+            return False
 
     def getImage(self):
         villageImg = "404"
