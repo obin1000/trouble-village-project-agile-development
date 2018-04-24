@@ -35,8 +35,10 @@ class Village:
             self.points = 4
         elif (self.population > 40 and (self.population < 59)):
             self.points = 3
-        elif (self.population > 20 and (self.population < 39)):
+        elif (self.population > 1 and (self.population < 39)):
             self.points = 2
+        elif (self.population == 0):
+            self.points = 0
 
     def buildWell(self):
         if self.wood - 500 >= 0:
