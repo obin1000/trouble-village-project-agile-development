@@ -117,6 +117,16 @@ class VillagePage(tk.Frame):
         canvas.icon_pop = icon_pop
         canvas.create_image(550, 45, image=canvas.icon_pop, anchor="nw")
 
+        if(dorp.well):
+            icon_well = tk.PhotoImage(file='img/well.png')
+            canvas.icon_well = icon_well
+            canvas.create_image(500, 300, image=canvas.icon_well, anchor="nw")
+
+        if (dorp.stockpile):
+            icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
+            canvas.icon_stockpile = icon_stockpile
+            canvas.create_image(375, 175, image=canvas.icon_stockpile, anchor="nw")
+
         canvas.create_text(400,20,fill=resource_color,font=resource_font,text="Turn : "+ str(current_turn))
         canvas.create_text(200,60,fill=resource_color,font=resource_font,text=""+ str(current_wood))
         canvas.create_text(400,60,fill=resource_color,font=resource_font,text=""+ str(current_water))

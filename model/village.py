@@ -9,8 +9,8 @@ class Village:
         self.players = players
         self.turn = 0
         self.state = 0
-        self.well = False
-        self.stockpile = False
+        self.well = True
+        self.stockpile = True
 
     def getPopulation(self):
         return self.population
