@@ -50,8 +50,11 @@ class Village:
             villageImg = "img/giphy.gif"
         return villageImg
 
-    def setPopulation(self, population):
-        self.population = population
+    def addPopulation(self, population):
+        self.population += population
+
+    def lowerPopulation(self, population):
+        self.population -= population
         if self.population < 0:
             print("Game over!")
             self.population = 0
