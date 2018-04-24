@@ -29,7 +29,7 @@ class Village:
 
     def setPoints(self):
 
-        if (self.population > 80 and (self.population < 101)):
+        if (self.population > 80 and (self.population < 10000)):
             self.points = 5
         elif (self.population > 60 and (self.population < 79)):
             self.points = 4
