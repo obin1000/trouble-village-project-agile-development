@@ -89,9 +89,10 @@ class VillagePage(tk.Frame):
 
         dorp = self.controller.dorp
         current_turn = dorp.getTurn()
-        current_wood= dorp.getWood()
-        current_water= dorp.getWater()
+        current_wood = dorp.getWood()
+        current_water = dorp.getWater()
         current_pop = dorp.getPopulation()
+        current_points = dorp.getPoints()
 
         resource_font = "Times 20 bold"
         resource_color = "black"
@@ -103,21 +104,25 @@ class VillagePage(tk.Frame):
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
-        canvas.create_rectangle(0,40,800,80, fill="white")
+        canvas.create_rectangle(0, 40, 800, 80, fill="white")
 
         icon_water = tk.PhotoImage(file='img/water.png')
         canvas.icon_water = icon_water
-        canvas.create_image(345, 45, image=canvas.icon_water, anchor="nw")
+        canvas.create_image(290, 45, image=canvas.icon_water, anchor="nw")
 
         icon_wood = tk.PhotoImage(file='img/logs.png')
         canvas.icon_wood = icon_wood
-        canvas.create_image(145, 45, image=canvas.icon_wood, anchor="nw")
+        canvas.create_image(130, 45, image=canvas.icon_wood, anchor="nw")
 
         icon_pop = tk.PhotoImage(file='img/pop.png')
         canvas.icon_pop = icon_pop
-        canvas.create_image(550, 45, image=canvas.icon_pop, anchor="nw")
+        canvas.create_image(450, 45, image=canvas.icon_pop, anchor="nw")
 
-        if(dorp.well):
+        icon_points = tk.PhotoImage(file='img/points.png')
+        canvas.icon_points = icon_points
+        canvas.create_image(610, 45, image=canvas.icon_points, anchor="nw")
+
+        if (dorp.well):
             icon_well = tk.PhotoImage(file='img/well.png')
             canvas.icon_well = icon_well
             canvas.create_image(500, 300, image=canvas.icon_well, anchor="nw")
@@ -127,10 +132,11 @@ class VillagePage(tk.Frame):
             canvas.icon_stockpile = icon_stockpile
             canvas.create_image(375, 175, image=canvas.icon_stockpile, anchor="nw")
 
-        canvas.create_text(400,20,fill=resource_color,font=resource_font,text="Turn : "+ str(current_turn))
-        canvas.create_text(200,60,fill=resource_color,font=resource_font,text=""+ str(current_wood))
-        canvas.create_text(400,60,fill=resource_color,font=resource_font,text=""+ str(current_water))
-        canvas.create_text(600,60,fill=resource_color,font=resource_font,text=""+ str(current_pop))
+        canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
+        canvas.create_text(195, 60, fill=resource_color, font=resource_font, text="" + str(current_wood))
+        canvas.create_text(345, 60, fill=resource_color, font=resource_font, text="" + str(current_water))
+        canvas.create_text(515, 60, fill=resource_color, font=resource_font, text="" + str(current_pop))
+        canvas.create_text(665, 60, fill=resource_color, font=resource_font, text="" + str(current_points))
 
         nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
         nextTurn.pack(side="bottom")

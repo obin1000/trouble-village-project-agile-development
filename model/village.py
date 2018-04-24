@@ -9,8 +9,10 @@ class Village:
         self.players = players
         self.turn = 0
         self.state = 0
+        self.points = 0
         self.well = True
         self.stockpile = True
+        self.setPoints()
 
     def getPopulation(self):
         return self.population
@@ -21,6 +23,20 @@ class Village:
 
     def setState(self, state):
         self.state = state
+
+    def getPoints(self):
+        return self.points
+
+    def setPoints(self):
+
+        if (self.population > 80 and (self.population < 101)):
+            self.points = 5
+        elif (self.population > 60 and (self.population < 79)):
+            self.points = 4
+        elif (self.population > 40 and (self.population < 59)):
+            self.points = 3
+        elif (self.population > 20 and (self.population < 39)):
+            self.points = 2
 
     def buildWell(self):
         if self.wood - 500 >= 0:
