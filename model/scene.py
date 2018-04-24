@@ -105,6 +105,7 @@ class VillagePage(tk.Frame):
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
         canvas.create_rectangle(0, 40, 800, 80, fill="white")
+        canvas.create_rectangle(0, 480, 50, 430, fill="white")
 
         icon_water = tk.PhotoImage(file='img/water.png')
         canvas.icon_water = icon_water
@@ -121,6 +122,11 @@ class VillagePage(tk.Frame):
         icon_points = tk.PhotoImage(file='img/points.png')
         canvas.icon_points = icon_points
         canvas.create_image(610, 45, image=canvas.icon_points, anchor="nw")
+
+        if (dorp.getState() > 0):
+            icon_state = tk.PhotoImage(file=dorp.getStateImg())
+            canvas.icon_state = icon_state
+            canvas.create_image(7, 440, image=canvas.icon_state, anchor="nw")
 
         if (dorp.well):
             icon_well = tk.PhotoImage(file='img/well.png')

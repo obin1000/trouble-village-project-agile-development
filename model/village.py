@@ -10,8 +10,8 @@ class Village:
         self.turn = 0
         self.state = 0
         self.points = 0
-        self.well = True
-        self.stockpile = True
+        self.well = False
+        self.stockpile = False
         self.setPoints()
 
     def getPopulation(self):
@@ -54,16 +54,15 @@ class Village:
         else:
             return False
 
-    def getImage(self):
-        villageImg = "404"
+    def getStateImg(self):
         if self.state == 0:
-            villageImg = "img/Base.gif"
+            villageImg = ""
         elif self.state == 1:
-            villageImg = "img/Fire.gif"
+            villageImg = "img/flame.png"
         elif self.state == 2:
-            villageImg = "img/giphy.gif"
+            villageImg = "img/wave.png"
         elif self.state == 3:
-            villageImg = "img/giphy.gif"
+            villageImg = "img/fire.png"
         return villageImg
 
     def addPopulation(self, population):
@@ -111,6 +110,9 @@ class Village:
 
     def getWater(self):
         return self.water
+
+    def getState(self):
+        return self.state
 
     #for next turn use the one in scene
     def nextTurn(self):
