@@ -50,8 +50,10 @@ class NFC(threading.Thread):
             self.troublevillage.nextTurn()
         elif card == "25061219217197":  # wellbuilding
             self.dorp.buildWell()
+            self.troublevillage.update()
         elif card == "18824821821771":  # stockpilebuilding
             self.dorp.buildStockpile()
+            self.troublevillage.update()
 
     def testCard(self):
             Burn(self.dorp,self.troublevillage)
