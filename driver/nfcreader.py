@@ -48,6 +48,13 @@ class NFC(threading.Thread):
         elif card == "180439599163":  # overstromingkaart
             Flood(self.dorp,self.troublevillage)
             self.troublevillage.nextTurn()
+        elif card == "164989799196":  # populatie kaart
+            self.dorp.setPopulation(self.dorp.getPopulation + 50)
+            self.troublevillage.update()
+        elif card == "124173115221127":     # dode kaart
+            self.dorp.setPopulation(self.dorp.getPopulation*0.5)
+            self.troublevillage.update()
+
         elif card == "25061219217197":  # wellbuilding
             self.dorp.buildWell()
             self.troublevillage.update()
