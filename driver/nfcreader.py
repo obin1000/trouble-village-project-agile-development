@@ -49,9 +49,9 @@ class NFC(threading.Thread):
             Flood(self.dorp,self.troublevillage)
             self.troublevillage.nextTurn()
         elif card == "25061219217197":  # wellbuilding
-            self.dorp.setWell(True)
+            self.dorp.buildWell()
         elif card == "18824821821771":  # stockpilebuilding
-            self.dorp.setStockpile(True)
+            self.dorp.buildStockpile()
 
     def testCard(self):
             Burn(self.dorp,self.troublevillage)
