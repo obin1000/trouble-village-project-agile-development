@@ -17,7 +17,7 @@ class TroubleVillage(tk.Tk):
         self.title('Trouble Village')
         self.geometry('800x480')
 
-        self.resizable(width=False, height=False)
+        self.resizable(width=False, height=True)
         self.container.pack(side="top", expand="1", fill="x")
         self._frame = StartPage(master=self.container, controller=self)
 
@@ -66,6 +66,8 @@ class TroubleVillage(tk.Tk):
         if self.dorp.getState() != 0:
             self.dorp.lowerPopulation(random.randint(5,10))
 
+
+        self.dorp.setPoints()
         self.dorp.nextTurn()
         self.update()
 
