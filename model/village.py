@@ -62,7 +62,7 @@ class Village:
         elif self.state == 2:
             villageImg = "img/wave.png"
         elif self.state == 3:
-            villageImg = "img/fire.png"
+            villageImg = "img/flame.png"
         return villageImg
 
     def addPopulation(self, population):
