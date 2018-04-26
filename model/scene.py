@@ -71,7 +71,6 @@ class TroubleVillage(tk.Tk):
         self.dorp.nextTurn()
         self.update()
 
-
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
@@ -82,6 +81,11 @@ class StartPage(tk.Frame):
                                   command=lambda: controller.switch_frame(ClassSelectionPage))
         page_1_button.pack()
         self.pack()
+
+class TutorialPage(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master, bg="black")
+        self.controller = controller
 
 
 class VillagePage(tk.Frame):
@@ -125,7 +129,7 @@ class VillagePage(tk.Frame):
         canvas.icon_points = icon_points
         canvas.create_image(610, 45, image=canvas.icon_points, anchor="nw")
 
-        if (dorp.getState() > 0):
+        if (dorp.getState() != 0):
             icon_state = tk.PhotoImage(file=dorp.getStateImg())
             canvas.icon_state = icon_state
             canvas.create_image(7, 440, image=canvas.icon_state, anchor="nw")

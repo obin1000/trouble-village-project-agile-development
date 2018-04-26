@@ -111,9 +111,6 @@ class Village:
     def getWater(self):
         return self.water
 
-    def getState(self):
-        return self.state
-
     #for next turn use the one in scene
     def nextTurn(self):
         if self.population > 0:

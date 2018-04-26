@@ -5,14 +5,18 @@ import tkinter as tk
 class VillageEvent:
     # Constructor voor Village
 
-    def __init__(self):
-        print("test")
+    def __init__(self, requirement, dorp, main):
+        self.requirement = 50
+        self.dorp = dorp
+        self.main = main
 
 class Burn(VillageEvent):
     def __init__(self, dorp, main):
-        #requirement of resource to fix
-        self.requirement = 50
-        self.dorp = dorp
+        # requirement of resource to fix
+        requirement = 50
+
+        VillageEvent._init_(self, requirement, dorp, main)
+
         self.main = main
         
         self.dorp.setState(1)
@@ -31,10 +35,13 @@ class Burn(VillageEvent):
             print("Not enough water! , you'll need to gather some first!")
 
 
-class Flood():
+class Flood(VillageEvent):
     def __init__(self, dorp, main):
         #requirement of resource to fix
-        self.requirement = 200
+        requirement = 200
+
+        VillageEvent._init_(self, requirement, dorp, main)
+
         self.dorp = dorp
         self.main = main
         
