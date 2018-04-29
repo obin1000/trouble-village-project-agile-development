@@ -137,12 +137,12 @@ class VillagePage(tk.Frame):
         if (dorp.well):
             icon_well = tk.PhotoImage(file='img/well.png')
             canvas.icon_well = icon_well
-            canvas.create_image(500, 300, image=canvas.icon_well, anchor="nw")
+            canvas.create_image(345, 211, image=canvas.icon_well, anchor="nw")
 
         if (dorp.stockpile):
             icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
             canvas.icon_stockpile = icon_stockpile
-            canvas.create_image(375, 175, image=canvas.icon_stockpile, anchor="nw")
+            canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
 
         canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
         canvas.create_text(195, 60, fill=resource_color, font=resource_font, text="" + str(current_wood))
@@ -151,6 +151,7 @@ class VillagePage(tk.Frame):
         canvas.create_text(665, 60, fill=resource_color, font=resource_font, text="" + str(current_points))
 
         nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
+
         nextTurn.pack(side="bottom")
 
         self.pack()
