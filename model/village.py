@@ -9,8 +9,10 @@ class Village:
         self.players = players
         self.turn = 0
         self.state = 0
-        self.well = True
-        self.stockpile = True
+        self.points = 0
+        self.well = False
+        self.stockpile = False
+        self.setPoints()
 
     def getPopulation(self):
         return self.population
@@ -21,6 +23,20 @@ class Village:
 
     def setState(self, state):
         self.state = state
+
+    def getPoints(self):
+        return self.points
+
+    def setPoints(self):
+
+        if (self.population > 80 and (self.population < 10000)):
+            self.points = 5
+        elif (self.population > 60 and (self.population < 79)):
+            self.points = 4
+        elif (self.population > 40 and (self.population < 59)):
+            self.points = 3
+        elif (self.population > 20 and (self.population < 39)):
+            self.points = 2
 
     def buildWell(self):
         if self.wood - 500 >= 0:
@@ -38,16 +54,15 @@ class Village:
         else:
             return False
 
-    def getImage(self):
-        villageImg = "404"
+    def getStateImg(self):
         if self.state == 0:
-            villageImg = "img/Base.gif"
+            villageImg = ""
         elif self.state == 1:
-            villageImg = "img/Fire.gif"
+            villageImg = "img/flame.png"
         elif self.state == 2:
-            villageImg = "img/giphy.gif"
+            villageImg = "img/wave.png"
         elif self.state == 3:
-            villageImg = "img/giphy.gif"
+            villageImg = "img/fire.png"
         return villageImg
 
     def addPopulation(self, population):
