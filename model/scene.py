@@ -71,7 +71,6 @@ class TroubleVillage(tk.Tk):
         self.dorp.nextTurn()
         self.update()
 
-
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
@@ -81,7 +80,17 @@ class StartPage(tk.Frame):
         page_1_button = tk.Button(self, text="Start Game",
                                   command=lambda: controller.switch_frame(ClassSelectionPage))
         page_1_button.pack()
+
+        page_2_button = tk.Button(self, text="Tutorial",
+                                  command=lambda: controller.switch_frame(VillageTutorial))
+        page_2_button.pack()
+
         self.pack()
+
+class TutorialPage(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master, bg="black")
+        self.controller = controller
 
 
 class VillagePage(tk.Frame):
@@ -125,7 +134,7 @@ class VillagePage(tk.Frame):
         canvas.icon_points = icon_points
         canvas.create_image(610, 45, image=canvas.icon_points, anchor="nw")
 
-        if (dorp.getState() > 0):
+        if (dorp.getState() != 0):
             icon_state = tk.PhotoImage(file=dorp.getStateImg())
             canvas.icon_state = icon_state
             canvas.create_image(7, 440, image=canvas.icon_state, anchor="nw")
@@ -133,12 +142,12 @@ class VillagePage(tk.Frame):
         if (dorp.well):
             icon_well = tk.PhotoImage(file='img/well.png')
             canvas.icon_well = icon_well
-            canvas.create_image(500, 300, image=canvas.icon_well, anchor="nw")
+            canvas.create_image(345, 211, image=canvas.icon_well, anchor="nw")
 
         if (dorp.stockpile):
             icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
             canvas.icon_stockpile = icon_stockpile
-            canvas.create_image(375, 175, image=canvas.icon_stockpile, anchor="nw")
+            canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
 
         canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
         canvas.create_text(195, 60, fill=resource_color, font=resource_font, text="" + str(current_wood))
@@ -147,6 +156,7 @@ class VillagePage(tk.Frame):
         canvas.create_text(665, 60, fill=resource_color, font=resource_font, text="" + str(current_points))
 
         nextTurn = tk.Button(self, text="Next turn (debug)", command=self.controller.nextTurn)
+
         nextTurn.pack(side="bottom")
 
         self.pack()
@@ -178,3 +188,61 @@ class ClassSelectionPage(tk.Frame):
             self.controller.startGame(self.playerAmount.get()) #get players and start game.
 
     #after playerAmount we should let the players choose their class here.
+
+class VillageTutorial(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+        small_font = "Times 12"
+        title_font = "Times 22"
+        color = "black"
+
+        canvas = tk.Canvas(self, width=800, height=480)
+        canvas.pack()
+
+        #Achtergrond
+        bgimg = tk.PhotoImage(file='img/background.png')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+        #Rectangle
+        canvas.create_rectangle(130,40,670,440, fill="white")
+
+        #Intro
+        label = canvas.create_text(400, 100,fill=color,font=small_font, text="\n       Welcome to the Trouble Village tutorial!"
+                                   "\n" + "             This tutorial will explain how to:" +
+                                   "\n" + " \n                  Add resources using cards" + "\n" +
+                                   "\n" + "\nUpgrade your village by building new constructions")
+        #label_label = canvas.create_text(200, 25, text="bob")
+        #self.after(5000, label.destroy)
+
+        #Button
+        Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(StartPage), anchor='w',
+                                width=8)
+        Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
+
+        Resources_button = tk.Button(self, text="Tutorial resources", command=lambda: controller.switch_frame(TutorialResources),
+                                     anchor='w', width=14)
+        Resources_button_window = canvas.create_window(350, 130, anchor='nw', window=Resources_button)
+
+        #Titel
+        canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial")
+
+        self.pack()
+
+
+class TutorialResources(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+        canvas = tk.Canvas(self, width=800, height=480)
+        canvas.pack()
+
+        #Achtergrond
+        bgimg = tk.PhotoImage(file='img/background.png')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+        self.pack()
