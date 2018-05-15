@@ -34,7 +34,7 @@ class TroubleVillage(tk.Tk):
         self.switch_frame(VillagePage)
 
         if includeIO:
-            os.system('omxplayer img/Soundtrack.mp3')
+            os.system('omxplayer img/Soundtrack.mp3 &')
             nfcThread = NFC("nfcThread", self.dorp, self)
             nfcThread.start()
             self.spullen = Resources()
