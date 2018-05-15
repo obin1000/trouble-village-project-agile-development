@@ -39,6 +39,10 @@ class TroubleVillage(tk.Tk):
             nfcThread.start()
             self.spullen = Resources()
 
+    def endGame(self):
+        # call this function to refresh the resources.
+        self.switch_frame(GameOver)
+
     def update(self):
         # call this function to refresh the resources.
         self.switch_frame(VillagePage)
@@ -71,7 +75,11 @@ class TroubleVillage(tk.Tk):
 
         self.dorp.setPoints()
         self.dorp.nextTurn()
-        self.update()
+
+        if ((self.dorp.getPopulation()) <= 0):
+            self.endGame()
+        else:
+            self.update()
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -186,14 +194,6 @@ class VillagePage(tk.Frame):
         icon_ship4 = tk.PhotoImage(file='img/ship4.png')
         canvas.icon_ship4 = icon_ship4
         canvas.create_image(705, 244, image=canvas.icon_ship4, anchor="nw")
-
-
-
-
-
-
-
-
 
         canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
         canvas.create_text(195, 60, fill=resource_color, font=resource_font, text="" + str(current_wood))
