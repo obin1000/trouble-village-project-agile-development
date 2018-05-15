@@ -20,6 +20,8 @@ class TroubleVillage(tk.Tk):
         self.geometry('800x480')
         self.attributes('-fullscreen', True)
         self.bind('<Escape>', lambda e: self.destroy())
+        if includeIO:
+            self.overrideredirect(True)
 
         self.resizable(width=False, height=True)
         self.container.pack(side="top", expand="1", fill="x")
