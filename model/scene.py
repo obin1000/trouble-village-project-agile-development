@@ -11,12 +11,15 @@ if includeIO:
 
 
 class TroubleVillage(tk.Tk):
+
     def __init__(self):
         tk.Tk.__init__(self)
         self.container = tk.Frame(self)
 
         self.title('Trouble Village')
         self.geometry('800x480')
+        self.attributes('-fullscreen', True)
+        self.bind('<Escape>', lambda e: self.destroy())
 
         self.resizable(width=False, height=True)
         self.container.pack(side="top", expand="1", fill="x")
