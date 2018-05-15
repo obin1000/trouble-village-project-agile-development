@@ -4,7 +4,6 @@ import tkinter as tk
 # Abstracte weergaven van een dorp
 class VillageEvent:
     # Constructor voor Village
-
     def __init__(self, requirement, dorp, main):
         self.requirement = 50
         self.dorp = dorp

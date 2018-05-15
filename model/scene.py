@@ -290,3 +290,29 @@ class TutorialResources(tk.Frame):
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
         self.pack()
+
+class GameOver(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+        dorp = self.controller.dorp
+        small_font = "Times 20"
+        title_font = "Times 40"
+        bgcolor = "black"
+        txtcolor = "red"
+
+        canvas = tk.Canvas(self, width=800, height=480, bg=bgcolor)
+        canvas.pack()
+
+        canvas.create_text(400, 200, fill=txtcolor, font=title_font, text="Game Over")
+        canvas.create_text(400, 240, fill=txtcolor, font=small_font, text="Score: " + str(dorp.getPopulation()))
+
+        nameEntry = tk.Entry(canvas)
+        canvas.create_window(400, 280, window=nameEntry, height=30, width=200)
+
+        submit = tk.Button(self, text="Submit score", command=lambda: controller.switch_frame(StartPage), anchor='w',
+                                width=10)
+        canvas.create_window(365, 310, anchor='nw', window=submit)
+
+        self.pack()
