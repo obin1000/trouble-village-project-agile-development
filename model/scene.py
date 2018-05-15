@@ -29,13 +29,16 @@ class TroubleVillage(tk.Tk):
     def startGame(self, players):
         # starting game here.
 
-        self.dorp = Village("Trouble Village", 100, 100, 50, players)
+        self.dorp = Village("Trouble Village", 10, 5, 50, players)
         self.switch_frame(VillagePage)
 
         if includeIO:
             nfcThread = NFC("nfcThread", self.dorp, self)
             nfcThread.start()
             self.spullen = Resources()
+
+    def endGame(self):
+        self.switch_frame(GameOver)
 
     def update(self):
         # call this function to refresh the resources.
@@ -69,7 +72,11 @@ class TroubleVillage(tk.Tk):
 
         self.dorp.setPoints()
         self.dorp.nextTurn()
-        self.update()
+
+        if ((self.dorp.getPopulation()) <= 0):
+            self.endGame()
+        else:
+            self.update()
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -82,7 +89,7 @@ class StartPage(tk.Frame):
         page_1_button.pack()
 
         page_2_button = tk.Button(self, text="Tutorial",
-                                  command=lambda: controller.switch_frame(VillageTutorial))
+                                  command=lambda: controller.switch_frame(TutorialPage))
         page_2_button.pack()
 
         self.pack()
@@ -148,6 +155,7 @@ class VillagePage(tk.Frame):
             icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
             canvas.icon_stockpile = icon_stockpile
             canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+
 
         canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
         canvas.create_text(195, 60, fill=resource_color, font=resource_font, text="" + str(current_wood))
@@ -247,6 +255,7 @@ class TutorialResources(tk.Frame):
 
         self.pack()
 
+
 class GameOver(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
@@ -268,7 +277,7 @@ class GameOver(tk.Frame):
         canvas.create_window(400, 280, window=nameEntry, height=30, width=200)
 
         submit = tk.Button(self, text="Submit score", command=lambda: controller.switch_frame(StartPage), anchor='w',
-                                width=10)
+                           width=10)
         canvas.create_window(365, 310, anchor='nw', window=submit)
 
         self.pack()
