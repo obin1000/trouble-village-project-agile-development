@@ -12,6 +12,10 @@ class Village:
         self.points = 0
         self.well = False
         self.stockpile = False
+        self.ship1 = False
+        self.ship2 = False
+        self.ship3 = False
+        self.ship4 = False
         self.setPoints()
 
     def getPopulation(self):
@@ -35,8 +39,10 @@ class Village:
             self.points = 4
         elif (self.population > 40 and (self.population < 59)):
             self.points = 3
-        elif (self.population > 20 and (self.population < 39)):
+        elif (self.population > 1 and (self.population < 39)):
             self.points = 2
+        elif (self.population == 0):
+            self.points = 0
 
     def buildWell(self):
         if self.wood - 500 >= 0:
@@ -51,6 +57,34 @@ class Village:
             self.water -= 500
             self.stockpile = True
             return True
+        else:
+            return False
+
+    def buildShip1(self):
+        if self.wood - 500 >= 0:
+            self.water -= 500
+            self.stockpile = True
+        else:
+            return False
+
+    def buildShip2(self):
+        if self.wood - 500 >= 0:
+            self.water -= 500
+            self.stockpile = True
+        else:
+            return False
+
+    def buildShip3(self):
+        if self.wood - 500 >= 0:
+            self.water -= 500
+            self.stockpile = True
+        else:
+            return False
+
+    def buildShip4(self):
+        if self.wood - 500 >= 0:
+            self.water -= 500
+            self.stockpile = True
         else:
             return False
 
@@ -111,7 +145,7 @@ class Village:
     def getWater(self):
         return self.water
 
-    #for next turn use the one in scene
+    # for next turn use the one in scene
     def nextTurn(self):
         if self.population > 0:
             self.turn += 1

@@ -1,6 +1,7 @@
 includeIO = False
 
 import tkinter as tk
+import os
 from model.event import *
 from model.village import *
 import random
@@ -29,16 +30,14 @@ class TroubleVillage(tk.Tk):
     def startGame(self, players):
         # starting game here.
 
-        self.dorp = Village("Trouble Village", 10, 5, 50, players)
+        self.dorp = Village("Trouble Village", 100, 100, 50, players)
         self.switch_frame(VillagePage)
 
         if includeIO:
+            os.system('omxplayer img/Soundtrack.mp3')
             nfcThread = NFC("nfcThread", self.dorp, self)
             nfcThread.start()
             self.spullen = Resources()
-
-    def endGame(self):
-        self.switch_frame(GameOver)
 
     def update(self):
         # call this function to refresh the resources.
@@ -72,11 +71,7 @@ class TroubleVillage(tk.Tk):
 
         self.dorp.setPoints()
         self.dorp.nextTurn()
-
-        if ((self.dorp.getPopulation()) <= 0):
-            self.endGame()
-        else:
-            self.update()
+        self.update()
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -89,7 +84,7 @@ class StartPage(tk.Frame):
         page_1_button.pack()
 
         page_2_button = tk.Button(self, text="Tutorial",
-                                  command=lambda: controller.switch_frame(TutorialPage))
+                                  command=lambda: controller.switch_frame(VillageTutorial))
         page_2_button.pack()
 
         self.pack()
@@ -141,6 +136,22 @@ class VillagePage(tk.Frame):
         canvas.icon_points = icon_points
         canvas.create_image(610, 45, image=canvas.icon_points, anchor="nw")
 
+        icon_ship1 = tk.PhotoImage(file='img/ship1.png')
+        canvas.icon_ship1 = icon_ship1
+        canvas.create_image(615, 400, image=canvas.icon_ship1, anchor="nw")
+
+        icon_ship2 = tk.PhotoImage(file='img/ship2.png')
+        canvas.icon_ship2 = icon_ship2
+        canvas.create_image(705, 400, image=canvas.icon_ship2, anchor="nw")
+
+        icon_ship3 = tk.PhotoImage(file='img/ship3.png')
+        canvas.icon_ship3 = icon_ship3
+        canvas.create_image(615, 250, image=canvas.icon_ship3, anchor="nw")
+
+        icon_ship4 = tk.PhotoImage(file='img/ship4.png')
+        canvas.icon_ship4 = icon_ship4
+        canvas.create_image(705, 244, image=canvas.icon_ship4, anchor="nw")
+
         if (dorp.getState() != 0):
             icon_state = tk.PhotoImage(file=dorp.getStateImg())
             canvas.icon_state = icon_state
@@ -155,6 +166,33 @@ class VillagePage(tk.Frame):
             icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
             canvas.icon_stockpile = icon_stockpile
             canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+
+        #if (dorp.ship1):
+        icon_ship1 = tk.PhotoImage(file='img/ship1.png')
+        canvas.icon_ship1 = icon_ship1
+        canvas.create_image(615, 400, image=canvas.icon_ship1, anchor="nw")
+
+        #if (dorp.ship2):
+        icon_ship2 = tk.PhotoImage(file='img/ship2.png')
+        canvas.icon_ship2 = icon_ship2
+        canvas.create_image(705, 400, image=canvas.icon_ship2, anchor="nw")
+
+        #if (dorp.ship3):
+        icon_ship3 = tk.PhotoImage(file='img/ship3.png')
+        canvas.icon_ship3 = icon_ship3
+        canvas.create_image(615, 250, image=canvas.icon_ship3, anchor="nw")
+
+        #if (dorp.ship4):
+        icon_ship4 = tk.PhotoImage(file='img/ship4.png')
+        canvas.icon_ship4 = icon_ship4
+        canvas.create_image(705, 244, image=canvas.icon_ship4, anchor="nw")
+
+
+
+
+
+
+
 
 
         canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
@@ -255,7 +293,6 @@ class TutorialResources(tk.Frame):
 
         self.pack()
 
-
 class GameOver(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
@@ -277,7 +314,7 @@ class GameOver(tk.Frame):
         canvas.create_window(400, 280, window=nameEntry, height=30, width=200)
 
         submit = tk.Button(self, text="Submit score", command=lambda: controller.switch_frame(StartPage), anchor='w',
-                           width=10)
+                                width=10)
         canvas.create_window(365, 310, anchor='nw', window=submit)
 
         self.pack()
