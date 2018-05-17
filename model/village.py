@@ -93,6 +93,7 @@ class Village:
             return False
 
     def getStateImg(self):
+        villageImg = ""
         if self.state == 0:
             villageImg = ""
         elif self.state == 1:
