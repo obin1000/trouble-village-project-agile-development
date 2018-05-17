@@ -63,16 +63,16 @@ class NFC(threading.Thread):
             self.dorp.buildStockpile()
             self.troublevillage.update()
 
-        elif card == "buildship1 code":  # ship part1 building
+        elif card == "302482204911":  # ship part1 building
             self.dorp.buildShip1()
             self.troublevillage.update()
-        elif card == "buildship2 code":  # ship part2 building
+        elif card == "47410282122":  # ship part2 building
             self.dorp.buildShip2()
             self.troublevillage.update()
-        elif card == "buildship3 code":  # ship part3 building
+        elif card == "1102222049149":  # ship part3 building
             self.dorp.buildShip3()
             self.troublevillage.update()
-        elif card == "buildship4 code":  # ship part4 building
+        elif card == "1411322449174":  # ship part4 building
             self.dorp.buildShip4()
             self.troublevillage.update()
 
