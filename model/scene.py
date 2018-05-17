@@ -93,7 +93,8 @@ class TroubleVillage(tk.Tk):
             self.endGame(0)
         elif self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
             self.endGame(1)
-        self.update()
+        else:
+            self.update()
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
