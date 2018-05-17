@@ -265,7 +265,7 @@ class VillageTutorial(tk.Frame):
         canvas.pack()
 
         #Achtergrond
-        bgimg = tk.PhotoImage(file='img/background.png')
+        bgimg = tk.PhotoImage(file='img/background.gif')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
@@ -305,16 +305,16 @@ class TutorialResources(tk.Frame):
         canvas.pack()
 
         #Achtergrond
-        bgimg = tk.PhotoImage(file='img/background.png')
+        bgimg = tk.PhotoImage(file='img/background.gif')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
 
-        icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
+        icon_stockpile = tk.PhotoImage(file='img/house.gif')
         canvas.icon_stockpile = icon_stockpile
         canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
 
-        icon_geenkleurship2 = tk.PhotoImage(file='img/geenkleurship2.png')
+        icon_geenkleurship2 = tk.PhotoImage(file='img/house.gif')
         canvas.icon_geenkleurship2 = icon_geenkleurship2
         canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
 
