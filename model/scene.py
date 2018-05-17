@@ -91,7 +91,7 @@ class TroubleVillage(tk.Tk):
 
         if ((self.dorp.getPopulation()) <= 0):
             self.endGame(0)
-        elif self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
+        if self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
             self.endGame(1)
         else:
             self.update()
