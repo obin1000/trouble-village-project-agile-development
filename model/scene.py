@@ -5,6 +5,7 @@ import os
 from model.event import *
 from model.village import *
 import random
+import time
 if includeIO:
     from driver.nfcreader import NFC
     from driver.hokjesreader import Resources
@@ -35,7 +36,7 @@ class TroubleVillage(tk.Tk):
     def startGame(self, players):
         # starting game here.
 
-        self.dorp = Village("Trouble Village", 100, 100, 50, players)
+        self.dorp = Village("Trouble Village", 10, 100, 50, players)
         self.switch_frame(VillagePage)
 
         if includeIO:
@@ -44,9 +45,15 @@ class TroubleVillage(tk.Tk):
             nfcThread.start()
             self.spullen = Resources()
 
-    def endGame(self):
+    def endGame(self, result):
         # call this function to refresh the resources.
-        self.switch_frame(GameOver)
+        if result:
+            self.switch_frame(GameWonPage)
+        else:
+            self.switch_frame(GameOverPage)
+
+    def scoreBoard(self):
+        self.switch_frame(ScoreBoardPage)
 
     def update(self):
         # call this function to refresh the resources.
@@ -81,8 +88,11 @@ class TroubleVillage(tk.Tk):
         self.dorp.setPoints()
         self.dorp.nextTurn()
 
+
         if ((self.dorp.getPopulation()) <= 0):
-            self.endGame()
+            self.endGame(0)
+        elif self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
+            self.endGame(1)
         else:
             self.update()
 
@@ -299,7 +309,31 @@ class TutorialResources(tk.Frame):
 
         self.pack()
 
-class GameOver(tk.Frame):
+class GameOverPage(tk.Frame):
+    def __init__(self, master, controller):
+            tk.Frame.__init__(self, master)
+            self.controller = controller
+
+            dorp = self.controller.dorp
+            small_font = "Times 20"
+            title_font = "Times 40"
+            bgcolor = "black"
+            txtcolor = "red"
+
+            canvas = tk.Canvas(self, width=800, height=480, bg=bgcolor)
+
+
+            canvas.create_text(400, 200, fill=txtcolor, font=title_font, text="Game Over!")
+          #  canvas.create_text(400, 240, fill=txtcolor, font=small_font, text="Score: " + str(dorp.getPopulation()))
+
+            submit = tk.Button(self, text="Play Again?", command=lambda: controller.switch_frame(StartPage), anchor='w', width=10)
+            canvas.create_window(365, 310, anchor='nw', window=submit)
+            #TroubleVillage.scoreBoard(self)
+            canvas.pack()
+            self.pack()
+
+
+class GameWonPage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.controller = controller
@@ -311,16 +345,54 @@ class GameOver(tk.Frame):
         txtcolor = "red"
 
         canvas = tk.Canvas(self, width=800, height=480, bg=bgcolor)
-        canvas.pack()
 
-        canvas.create_text(400, 200, fill=txtcolor, font=title_font, text="Game Over")
+        canvas.create_text(400, 200, fill=txtcolor, font=title_font, text="You Won!")
         canvas.create_text(400, 240, fill=txtcolor, font=small_font, text="Score: " + str(dorp.getPopulation()))
 
-        nameEntry = tk.Entry(canvas)
-        canvas.create_window(400, 280, window=nameEntry, height=30, width=200)
+        submit = tk.Button(self, text="Scoreboard", command=lambda: controller.switch_frame(ScoreBoardPage), anchor='w', width=10)
 
-        submit = tk.Button(self, text="Submit score", command=lambda: controller.switch_frame(StartPage), anchor='w',
-                                width=10)
         canvas.create_window(365, 310, anchor='nw', window=submit)
+        canvas.pack()
+
+        file = open('score.txt', 'a')
+
+        file.write("Date: " + time.strftime("%c") + "\t Score:" + str(dorp.getPopulation()) + "\n")
+
+        file.close()
 
         self.pack()
+
+
+class ScoreBoardPage(tk.Frame):
+    def __init__(self, master, controller):
+            tk.Frame.__init__(self, master)
+            self.controller = controller
+
+            dorp = self.controller.dorp
+            small_font = "Times 10"
+            title_font = "Times 40"
+            bgcolor = "black"
+            txtcolor = "red"
+            text = ""
+            lineCounter = 0
+
+            canvas = tk.Canvas(self, width=800, height=480, bg=bgcolor)
+
+            file = open('score.txt', 'r')
+            for line in file:
+                text = text + line + "\n"
+                lineCounter +=1
+
+            canvas.create_text(400, 200, fill=txtcolor, font=small_font, text=text)
+            submit = tk.Button(self, text="Play Again", command=lambda: controller.switch_frame(StartPage), anchor='w', width=10)
+            canvas.create_window(365, 310, anchor='nw', window=submit)
+            canvas.pack()
+
+            if lineCounter>10:
+                file = open('score.txt, w')
+
+            self.pack()
+
+
+
+
