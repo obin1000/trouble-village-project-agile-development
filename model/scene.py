@@ -132,6 +132,7 @@ class VillagePage(tk.Frame):
 
         canvas.create_rectangle(0, 40, 800, 80, fill="white")
         canvas.create_rectangle(0, 480, 50, 430, fill="white")
+        canvas.create_rectangle(600, 480, 800, 240, fill="white")
 
         icon_water = tk.PhotoImage(file='img/water.png')
         canvas.icon_water = icon_water
@@ -149,21 +150,21 @@ class VillagePage(tk.Frame):
         canvas.icon_points = icon_points
         canvas.create_image(610, 45, image=canvas.icon_points, anchor="nw")
 
-        icon_ship1 = tk.PhotoImage(file='img/ship1.png')
-        canvas.icon_ship1 = icon_ship1
-        canvas.create_image(615, 400, image=canvas.icon_ship1, anchor="nw")
+        icon_geenkleurship1 = tk.PhotoImage(file='img/geenkleurship1.png')
+        canvas.icon_geenkleurship1 = icon_geenkleurship1
+        canvas.create_image(615, 400, image=canvas.icon_geenkleurship1, anchor="nw")
 
-        icon_ship2 = tk.PhotoImage(file='img/ship2.png')
-        canvas.icon_ship2 = icon_ship2
-        canvas.create_image(705, 400, image=canvas.icon_ship2, anchor="nw")
+        icon_geenkleurship2 = tk.PhotoImage(file='img/geenkleurship2.png')
+        canvas.icon_geenkleurship2 = icon_geenkleurship2
+        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
 
-        icon_ship3 = tk.PhotoImage(file='img/ship3.png')
-        canvas.icon_ship3 = icon_ship3
-        canvas.create_image(615, 250, image=canvas.icon_ship3, anchor="nw")
+        icon_geenkleurship3 = tk.PhotoImage(file='img/geenkleurship3.png')
+        canvas.icon_geenkleurship3 = icon_geenkleurship3
+        canvas.create_image(614, 248, image=canvas.icon_geenkleurship3, anchor="nw")
 
-        icon_ship4 = tk.PhotoImage(file='img/ship4.png')
-        canvas.icon_ship4 = icon_ship4
-        canvas.create_image(705, 244, image=canvas.icon_ship4, anchor="nw")
+        icon_geenkleurship4 = tk.PhotoImage(file='img/geenkleurship4.png')
+        canvas.icon_geenkleurship4 = icon_geenkleurship4
+        canvas.create_image(704, 243, image=canvas.icon_geenkleurship4, anchor="nw")
 
         if (dorp.getState() != 0):
             icon_state = tk.PhotoImage(file=dorp.getStateImg())
@@ -180,25 +181,25 @@ class VillagePage(tk.Frame):
             canvas.icon_stockpile = icon_stockpile
             canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
 
-        #if (dorp.ship1):
-        icon_ship1 = tk.PhotoImage(file='img/ship1.png')
-        canvas.icon_ship1 = icon_ship1
-        canvas.create_image(615, 400, image=canvas.icon_ship1, anchor="nw")
+        if (dorp.ship1):
+            icon_ship1 = tk.PhotoImage(file='img/ship1.png')
+            canvas.icon_ship1 = icon_ship1
+            canvas.create_image(615, 400, image=canvas.icon_ship1, anchor="nw")
 
-        #if (dorp.ship2):
-        icon_ship2 = tk.PhotoImage(file='img/ship2.png')
-        canvas.icon_ship2 = icon_ship2
-        canvas.create_image(705, 400, image=canvas.icon_ship2, anchor="nw")
+        if (dorp.ship2):
+            icon_ship2 = tk.PhotoImage(file='img/ship2.png')
+            canvas.icon_ship2 = icon_ship2
+            canvas.create_image(705, 400, image=canvas.icon_ship2, anchor="nw")
 
-        #if (dorp.ship3):
-        icon_ship3 = tk.PhotoImage(file='img/ship3.png')
-        canvas.icon_ship3 = icon_ship3
-        canvas.create_image(615, 250, image=canvas.icon_ship3, anchor="nw")
+        if (dorp.ship3):
+            icon_ship3 = tk.PhotoImage(file='img/ship3.png')
+            canvas.icon_ship3 = icon_ship3
+            canvas.create_image(614, 248, image=canvas.icon_ship3, anchor="nw")
 
-        #if (dorp.ship4):
-        icon_ship4 = tk.PhotoImage(file='img/ship4.png')
-        canvas.icon_ship4 = icon_ship4
-        canvas.create_image(705, 244, image=canvas.icon_ship4, anchor="nw")
+        if (dorp.ship4):
+            icon_ship4 = tk.PhotoImage(file='img/ship4.png')
+            canvas.icon_ship4 = icon_ship4
+            canvas.create_image(704, 243, image=canvas.icon_ship4, anchor="nw")
 
         canvas.create_text(400, 20, fill=resource_color, font=resource_font, text="Turn : " + str(current_turn))
         canvas.create_text(195, 60, fill=resource_color, font=resource_font, text="" + str(current_wood))
