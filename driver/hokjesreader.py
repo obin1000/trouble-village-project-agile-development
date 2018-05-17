@@ -53,20 +53,6 @@ class Resources:
         if GPIO.input(channel):
             print("rising edge detected on" + str(channel))
             if channel == Resources.hout1:
-                GPIO.output(Resources.rood1, GPIO.LOW)
-            elif channel == Resources.hout2:
-                GPIO.output(Resources.rood2, GPIO.LOW)
-            elif channel == Resources.hout3:
-                GPIO.output(Resources.rood3, GPIO.LOW)
-            elif channel == Resources.water1:
-                GPIO.output(Resources.blauw1, GPIO.LOW)
-            elif channel == Resources.water2:
-                GPIO.output(Resources.blauw2, GPIO.LOW)
-            elif channel == Resources.water3:
-                GPIO.output(Resources.blauw3, GPIO.LOW)
-        else:
-            print("falling edge detected on" + str(channel))
-            if channel == Resources.hout1:
                 GPIO.output(Resources.rood1, GPIO.HIGH)
             elif channel == Resources.hout2:
                 GPIO.output(Resources.rood2, GPIO.HIGH)
@@ -78,6 +64,20 @@ class Resources:
                 GPIO.output(Resources.blauw2, GPIO.HIGH)
             elif channel == Resources.water3:
                 GPIO.output(Resources.blauw3, GPIO.HIGH)
+        else:
+            print("falling edge detected on" + str(channel))
+            if channel == Resources.hout1:
+                GPIO.output(Resources.rood1, GPIO.LOW)
+            elif channel == Resources.hout2:
+                GPIO.output(Resources.rood2, GPIO.LOW)
+            elif channel == Resources.hout3:
+                GPIO.output(Resources.rood3, GPIO.LOW)
+            elif channel == Resources.water1:
+                GPIO.output(Resources.blauw1, GPIO.LOW)
+            elif channel == Resources.water2:
+                GPIO.output(Resources.blauw2, GPIO.LOW)
+            elif channel == Resources.water3:
+                GPIO.output(Resources.blauw3, GPIO.LOW)
 
     def getOccupiedResources(self):
         Occupied = [GPIO.input(Resources.hout1), GPIO.input(Resources.hout2), GPIO.input(Resources.hout3), GPIO.input(Resources.water1), GPIO.input(Resources.water2), GPIO.input(Resources.water3)]
