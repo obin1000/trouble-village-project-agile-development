@@ -14,7 +14,7 @@ class Burn(VillageEvent):
         # requirement of resource to fix
         requirement = 50
 
-        VillageEvent._init_(self, requirement, dorp, main)
+        VillageEvent.__init__(self, requirement, dorp, main)
 
         self.main = main
         
@@ -39,7 +39,7 @@ class Flood(VillageEvent):
         #requirement of resource to fix
         requirement = 200
 
-        VillageEvent._init_(self, requirement, dorp, main)
+        VillageEvent.__init__(self, requirement, dorp, main)
 
         self.dorp = dorp
         self.main = main
