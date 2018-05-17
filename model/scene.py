@@ -256,6 +256,7 @@ class VillageTutorial(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
+
         small_font = "Times 12"
         title_font = "Times 22"
         color = "black"
@@ -299,6 +300,7 @@ class TutorialResources(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
+
         canvas = tk.Canvas(self, width=800, height=480)
         canvas.pack()
 
@@ -306,6 +308,16 @@ class TutorialResources(tk.Frame):
         bgimg = tk.PhotoImage(file='img/background.png')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+
+        icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
+        canvas.icon_stockpile = icon_stockpile
+        canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+
+        icon_geenkleurship2 = tk.PhotoImage(file='img/geenkleurship2.png')
+        canvas.icon_geenkleurship2 = icon_geenkleurship2
+        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
+
 
         self.pack()
 
