@@ -48,7 +48,7 @@ class Village:
         if self.wood - 500 >= 0:
             self.wood -= 500
             self.well = True
-            return True
+
         else:
             return False
 
@@ -62,7 +62,7 @@ class Village:
 
     def buildShip1(self):
         if self.wood - 500 >= 0:
-            self.water -= 500
+            self.wood -= 500
             self.ship1 = True
             return True
         else:
@@ -70,7 +70,7 @@ class Village:
 
     def buildShip2(self):
         if self.wood - 500 >= 0:
-            self.water -= 500
+            self.wood -= 500
             self.ship2 = True
             return True
         else:
@@ -78,7 +78,7 @@ class Village:
 
     def buildShip3(self):
         if self.wood - 500 >= 0:
-            self.water -= 500
+            self.wood -= 500
             self.ship3 = True
             return True
         else:
@@ -86,7 +86,7 @@ class Village:
 
     def buildShip4(self):
         if self.wood - 500 >= 0:
-            self.water -= 500
+            self.wood -= 500
             self.ship4 = True
             return True
         else:
