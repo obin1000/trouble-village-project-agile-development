@@ -36,7 +36,7 @@ class NFC(threading.Thread):
 
     def checkCard(self, uid):
         card = self.arrayToString(uid)
-        print(uid)
+        print(card)
         if card == "25213744934":  # waterkaart
             self.dorp.addWater(200)
             self.troublevillage.nextTurn()
