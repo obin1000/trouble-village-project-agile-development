@@ -2,13 +2,13 @@ import RPi.GPIO as GPIO
 
 
 class Resources:
-    hout1 = 7
-    hout2 = 3
-    hout3 = 5
+    hout1 = 15
+    hout2 = 11
+    hout3 = 3
 
-    water1 = 13
-    water2 = 11
-    water3 = 15
+    water1 = 5
+    water2 = 7
+    water3 = 13
 
     rood1 = 37
     rood2 = 35
