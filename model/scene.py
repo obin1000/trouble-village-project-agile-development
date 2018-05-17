@@ -52,6 +52,9 @@ class TroubleVillage(tk.Tk):
         else:
             self.switch_frame(GameOverPage)
 
+    def scoreBoard(self):
+        self.switch_frame(ScoreBoardPage)
+
     def update(self):
         # call this function to refresh the resources.
         self.switch_frame(VillagePage)
@@ -322,10 +325,10 @@ class GameOverPage(tk.Frame):
             canvas.create_text(400, 200, fill=txtcolor, font=title_font, text="Game Over!")
           #  canvas.create_text(400, 240, fill=txtcolor, font=small_font, text="Score: " + str(dorp.getPopulation()))
 
-            submit = tk.Button(self, text="Play Again", command=lambda: controller.switch_frame(StartPage), anchor='w', width=10)
+            submit = tk.Button(self, text="Play Again?", command=lambda: controller.switch_frame(StartPage), anchor='w', width=10)
             canvas.create_window(365, 310, anchor='nw', window=submit)
+            #TroubleVillage.scoreBoard(self)
             canvas.pack()
-
             self.pack()
 
 
@@ -345,8 +348,8 @@ class GameWonPage(tk.Frame):
         canvas.create_text(400, 200, fill=txtcolor, font=title_font, text="You Won!")
         canvas.create_text(400, 240, fill=txtcolor, font=small_font, text="Score: " + str(dorp.getPopulation()))
 
-        submit = tk.Button(self, text="Submit score", command=lambda: controller.switch_frame(StartPage), anchor='w',
-                           width=10)
+        submit = tk.Button(self, text="Scoreboard", command=lambda: controller.switch_frame(ScoreBoardPage), anchor='w', width=10)
+
         canvas.create_window(365, 310, anchor='nw', window=submit)
         canvas.pack()
 
@@ -380,8 +383,8 @@ class ScoreBoardPage(tk.Frame):
                 lineCounter +=1
 
             canvas.create_text(400, 200, fill=txtcolor, font=small_font, text=text)
-
-
+            submit = tk.Button(self, text="Play Again", command=lambda: controller.switch_frame(StartPage), anchor='w', width=10)
+            canvas.create_window(365, 310, anchor='nw', window=submit)
             canvas.pack()
 
             if lineCounter>10:
