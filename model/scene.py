@@ -100,15 +100,40 @@ class StartPage(tk.Frame):
     def __init__(self, master, controller):
         tk.Frame.__init__(self, master)
         self.controller = controller
-        
-        start_label = tk.Label(self, text="Trouble Village")
-        page_1_button = tk.Button(self, text="Start Game",
-                                  command=lambda: controller.switch_frame(ClassSelectionPage))
-        page_1_button.pack()
 
+        title_font = "Times 60"
+        txtcolor = "Black"
+
+        canvas = tk.Canvas(self, width=800, height=480, bg="white")
+
+        #Title Trouble village
+        title = canvas.create_text(400, 100, fill=txtcolor, font=title_font, text="Trouble village")
+
+        #Background --> aanpassen later!
+        bgimgStart = tk.PhotoImage(file='img/village2.gif')
+        canvas.bgimg = bgimgStart
+        canvas.create_image(150, 150, image=canvas.bgimg, anchor="nw")
+
+
+        start_label = tk.Label(self, text="Trouble Village")
+
+        #Rectangle button start game
+        canvas.create_rectangle(10,245,800,280, fill="white")
+        #Button start game
+        page_1_button = tk.Button(self, text="Start Game",
+                                  command=lambda: controller.switch_frame(ClassSelectionPage), anchor="w", fg="white", bg="#00ffff")
+        canvas.create_window(365, 250, anchor="nw", window=page_1_button)
+        #page_1_button.pack()
+
+        #Rectangle button tutorial
+        canvas.create_rectangle(10,345,800,380, fill="white")
+        #Button tutorial
         page_2_button = tk.Button(self, text="Tutorial",
-                                  command=lambda: controller.switch_frame(VillageTutorial))
-        page_2_button.pack()
+                                  command=lambda: controller.switch_frame(VillageTutorial), anchor="w", fg="white", bg="#00ffff")
+        canvas.create_window(375, 350, anchor="nw", window=page_2_button)
+        #page_2_button.pack()
+
+        canvas.pack()
 
         self.pack()
 
@@ -265,7 +290,7 @@ class VillageTutorial(tk.Frame):
         canvas.pack()
 
         #Achtergrond
-        bgimg = tk.PhotoImage(file='img/background.gif')
+        bgimg = tk.PhotoImage(file='img/village2.gif')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
@@ -305,7 +330,7 @@ class TutorialResources(tk.Frame):
         canvas.pack()
 
         #Achtergrond
-        bgimg = tk.PhotoImage(file='img/background.gif')
+        bgimg = tk.PhotoImage(file='img/village2.gif')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
