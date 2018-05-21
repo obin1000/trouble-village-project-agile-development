@@ -281,7 +281,6 @@ class VillageTutorial(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
-
         small_font = "Times 12"
         title_font = "Times 22"
         color = "black"
@@ -305,14 +304,26 @@ class VillageTutorial(tk.Frame):
         #label_label = canvas.create_text(200, 25, text="bob")
         #self.after(5000, label.destroy)
 
-        #Button
+
+        #Button back
         Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(StartPage), anchor='w',
                                 width=8)
         Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
 
+        #Button resources
         Resources_button = tk.Button(self, text="Tutorial resources", command=lambda: controller.switch_frame(TutorialResources),
                                      anchor='w', width=14)
         Resources_button_window = canvas.create_window(350, 130, anchor='nw', window=Resources_button)
+
+        #Button Building constructions
+        Building_button = tk.Button(self, text="Tutorial build constructions", command=lambda: controller.switch_frame(TutorialBuilding),
+                                     anchor='w', width=20)
+        Building_button_window = canvas.create_window(320, 180, anchor='nw', window=Building_button)
+
+        #Button building ship
+        Ship_button = tk.Button(self, text="Tutorial build ship", command=lambda: controller.switch_frame(TutorialShip),
+                                     anchor='w', width=20)
+        Resources_button_window = canvas.create_window(320, 230, anchor='nw', window=Ship_button)
 
         #Titel
         canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial")
@@ -328,6 +339,74 @@ class TutorialResources(tk.Frame):
 
         canvas = tk.Canvas(self, width=800, height=480)
         canvas.pack()
+
+        #BackButton
+        Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(VillageTutorial), anchor='w',
+                                width=8)
+        Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
+
+        #Achtergrond
+        bgimg = tk.PhotoImage(file='img/village2.gif')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+
+        icon_stockpile = tk.PhotoImage(file='img/house.gif')
+        canvas.icon_stockpile = icon_stockpile
+        canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+
+        icon_geenkleurship2 = tk.PhotoImage(file='img/house.gif')
+        canvas.icon_geenkleurship2 = icon_geenkleurship2
+        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
+
+
+        self.pack()
+
+
+class TutorialBuilding(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+
+        canvas = tk.Canvas(self, width=800, height=480)
+        canvas.pack()
+
+        #BackButton
+        Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(VillageTutorial), anchor='w',
+                                width=8)
+        Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
+
+        #Achtergrond
+        bgimg = tk.PhotoImage(file='img/village2.gif')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+
+        icon_stockpile = tk.PhotoImage(file='img/house.gif')
+        canvas.icon_stockpile = icon_stockpile
+        canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+
+        icon_geenkleurship2 = tk.PhotoImage(file='img/house.gif')
+        canvas.icon_geenkleurship2 = icon_geenkleurship2
+        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
+
+
+        self.pack()
+
+class TutorialShip(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+
+        canvas = tk.Canvas(self, width=800, height=480)
+        canvas.pack()
+
+        #BackButton
+        Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(VillageTutorial), anchor='w',
+                                width=8)
+        Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
 
         #Achtergrond
         bgimg = tk.PhotoImage(file='img/village2.gif')
