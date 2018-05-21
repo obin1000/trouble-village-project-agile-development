@@ -281,8 +281,8 @@ class VillageTutorial(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
-        small_font = "Times 12"
-        title_font = "Times 22"
+        small_font = "Times 20"
+        title_font = "Times 32"
         color = "black"
 
         canvas = tk.Canvas(self, width=800, height=480)
@@ -297,10 +297,11 @@ class VillageTutorial(tk.Frame):
         canvas.create_rectangle(130,40,670,440, fill="white")
 
         #Intro
-        label = canvas.create_text(400, 100,fill=color,font=small_font, text="\n       Welcome to the Trouble Village tutorial!"
+        label = canvas.create_text(400, 150,fill=color,font=small_font, text="\n       Welcome to the Trouble Village tutorial!"
                                    "\n" + "             This tutorial will explain how to:" +
                                    "\n" + " \n                  Add resources using cards" + "\n" +
-                                   "\n" + "\nUpgrade your village by building new constructions")
+                                   "\n" + "\nUpgrade your village by building new constructions" +
+                                   "\n" + "\n               And win by repearing the ship!")
         #label_label = canvas.create_text(200, 25, text="bob")
         #self.after(5000, label.destroy)
 
@@ -336,6 +337,9 @@ class TutorialResources(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
+        small_font = "Times 20"
+        title_font = "Times 32"
+        color = "black"
 
         canvas = tk.Canvas(self, width=800, height=480)
         canvas.pack()
@@ -350,15 +354,20 @@ class TutorialResources(tk.Frame):
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
+        #Rectangle
+        canvas.create_rectangle(130,40,670,440, fill="white")
+
+        label = canvas.create_text(400, 100,fill=color,font=small_font, text="\n" +"\n          By traveling the land you will collect resources" +"\n"+
+                                   "\n                                     for your village." + "\n"+
+                                   "\n        After every round as a team you will have to scan"+"\n"+
+                                   "\n          an eventcard to see if the odds are in your favor.")
 
         icon_stockpile = tk.PhotoImage(file='img/house.gif')
         canvas.icon_stockpile = icon_stockpile
         canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
 
-        icon_geenkleurship2 = tk.PhotoImage(file='img/house.gif')
-        canvas.icon_geenkleurship2 = icon_geenkleurship2
-        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
-
+        #Titel
+        canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial resources")
 
         self.pack()
 
@@ -368,6 +377,9 @@ class TutorialBuilding(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
+        small_font = "Times 20"
+        title_font = "Times 32"
+        color = "black"
 
         canvas = tk.Canvas(self, width=800, height=480)
         canvas.pack()
@@ -382,15 +394,19 @@ class TutorialBuilding(tk.Frame):
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
+        #Rectangle
+        canvas.create_rectangle(130,40,670,440, fill="white")
+
+        label = canvas.create_text(400, 100,fill=color,font=small_font, text="By traveling the land you will collect resources" +
+                                   "\n                          for your village")
 
         icon_stockpile = tk.PhotoImage(file='img/house.gif')
         canvas.icon_stockpile = icon_stockpile
         canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
 
-        icon_geenkleurship2 = tk.PhotoImage(file='img/house.gif')
-        canvas.icon_geenkleurship2 = icon_geenkleurship2
-        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
 
+        #Titel
+        canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial building constructions")
 
         self.pack()
 
@@ -399,29 +415,134 @@ class TutorialShip(tk.Frame):
         tk.Frame.__init__(self, master)
         self.controller = controller
 
+        small_font = "Times 20"
+        title_font = "Times 32"
+        color = "black"
 
         canvas = tk.Canvas(self, width=800, height=480)
         canvas.pack()
 
         #BackButton
         Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(VillageTutorial), anchor='w',
-                                width=8)
+                                width=14)
         Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
+
+        #BackNextPage
+        ship2_button = tk.Button(self, text="Next page", command=lambda: controller.switch_frame(TutorialShip2), anchor='w',
+                                width=14)
+        ship2_button_window = canvas.create_window(500, 400, anchor='nw', window=ship2_button)
 
         #Achtergrond
         bgimg = tk.PhotoImage(file='img/village2.gif')
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
+        #Rectangle
+        canvas.create_rectangle(130,40,670,440, fill="white")
+
+        label = canvas.create_text(400, 150,fill=color,font=small_font, text="To win the game everyone has to work together as a team" +
+                                                                        "\n"+   "\n                     to keep the villagers alive and" + "\n" +
+                                                                        "\n                    build a ship for them to escape")
 
         icon_stockpile = tk.PhotoImage(file='img/house.gif')
         canvas.icon_stockpile = icon_stockpile
-        canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+        canvas.create_image(40, 130, image=canvas.icon_stockpile, anchor="nw")
 
-        icon_geenkleurship2 = tk.PhotoImage(file='img/house.gif')
-        canvas.icon_geenkleurship2 = icon_geenkleurship2
-        canvas.create_image(705, 400, image=canvas.icon_geenkleurship2, anchor="nw")
+        #Titel
+        canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial building the ship")
 
+        self.pack()
+
+
+class TutorialShip2(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+        small_font = "Times 20"
+        title_font = "Times 32"
+        color = "black"
+
+        canvas = tk.Canvas(self, width=800, height=480)
+        canvas.pack()
+
+        #BackButton
+        Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(VillageTutorial), anchor='w',
+                                width=14)
+        Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
+
+        #BackButton
+        BackShip_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(TutorialShip), anchor='w',
+                                width=14)
+        Back_button_window = canvas.create_window(150, 400, anchor='nw', window=BackShip_button)
+
+        #ButtonNextPage
+        ship3_button = tk.Button(self, text="Next page", command=lambda: controller.switch_frame(TutorialShip3), anchor='w',
+                                width=14)
+        ship2_button_window = canvas.create_window(500, 400, anchor='nw', window=ship3_button)
+
+        #Achtergrond
+        bgimg = tk.PhotoImage(file='img/village2.gif')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+        #Rectangle
+        canvas.create_rectangle(130,40,670,440, fill="white")
+
+        label = canvas.create_text(400, 150,fill=color,font=small_font, text="        To build the ship you need to collect resources."+
+                                   "\n" +"\n           As a team you will have to upgrade the ship." +
+                                   "\n" +"\n        The ship will appear gray on your screen at first.")
+
+        icon_stockpile = tk.PhotoImage(file='img/house.gif')
+        canvas.icon_stockpile = icon_stockpile
+        canvas.create_image(40, 130, image=canvas.icon_stockpile, anchor="nw")
+
+        #Titel
+        canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial building the ship2")
+
+        self.pack()
+
+class TutorialShip3(tk.Frame):
+    def __init__(self, master, controller):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
+
+        small_font = "Times 20"
+        title_font = "Times 32"
+        color = "black"
+
+        canvas = tk.Canvas(self, width=800, height=480)
+        canvas.pack()
+
+        #BackButton
+        Back_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(VillageTutorial), anchor='w',
+                                width=14)
+        Back_button_window = canvas.create_window(10, 10, anchor='nw', window=Back_button)
+
+        #BackShipButton
+        Back_Ship_button = tk.Button(self, text="Back", command=lambda: controller.switch_frame(TutorialShip2), anchor='w',
+                                width=14)
+        Back_Ship_button_window = canvas.create_window(150, 400, anchor='nw', window=Back_Ship_button)
+
+        #Achtergrond
+        bgimg = tk.PhotoImage(file='img/village2.gif')
+        canvas.bgimg = bgimg
+        canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
+
+        #Rectangle
+        canvas.create_rectangle(130,40,670,440, fill="white")
+
+        label = canvas.create_text(400, 150,fill=color,font=small_font, text="                      The ship will be finished after"+
+                                 "\n"+  "\n             all of the ship pieces are added to the ship."+
+                                  "\n"+ "\n         After finishing the ship all of the left over villagers"
+                                   +"\n"+"\n                        will leave the village in safety.")
+
+        icon_stockpile = tk.PhotoImage(file='img/house.gif')
+        canvas.icon_stockpile = icon_stockpile
+        canvas.create_image(40, 130, image=canvas.icon_stockpile, anchor="nw")
+
+        #Titel
+        canvas.create_text(400,25,fill=color,font=title_font,text="Tutorial building the ship3")
 
         self.pack()
 
