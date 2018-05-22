@@ -87,13 +87,15 @@ class TroubleVillage(tk.Tk):
         # subtract a number between 0 and 5 from the population count per turn.
         self.dorp.lowerPopulation(random.randint(0,5))
 
-        # if there's an event active we apply a double population penalty.
+        # if there's an event active we apply a double popu lation penalty.
         if self.dorp.getState() != 0:
             self.dorp.lowerPopulation(random.randint(5,10))
 
 
         self.dorp.setPoints()
         self.dorp.nextTurn()
+        self.update()
+
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
