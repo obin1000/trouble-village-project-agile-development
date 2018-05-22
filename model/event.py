@@ -20,7 +20,7 @@ class Burn(VillageEvent):
         
         self.dorp.setState(1)
 
-        self.removeBurn = tk.Button(main, text="Your village is on Fire! " + requirement + " Water needed.", command=self.fix)
+        self.removeBurn = tk.Button(main, text="Your village is on Fire! " + str(requirement) + " Water needed.", command=self.fix)
         self.removeBurn.place(x=10,y=100)
 
     def fix(self):
@@ -46,7 +46,7 @@ class Flood(VillageEvent):
         
         self.dorp.setState(2)
 
-        self.removeFlood = tk.Button(main, text="Your village is on Flooded!" + requirement + "Wood needed.", command=self.fix)
+        self.removeFlood = tk.Button(main, text="Your village is on Flooded!" + str(requirement) + " Wood needed.", command=self.fix)
         self.removeFlood.place(x=10,y=120)
 
     def fix(self):
