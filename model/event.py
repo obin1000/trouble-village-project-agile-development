@@ -12,7 +12,7 @@ class VillageEvent:
 class Burn(VillageEvent):
     def __init__(self, dorp, main):
         # requirement of resource to fix
-        requirement = 50
+        requirement = 1500
 
         VillageEvent.__init__(self, requirement, dorp, main)
 
@@ -20,7 +20,7 @@ class Burn(VillageEvent):
         
         self.dorp.setState(1)
 
-        self.removeBurn = tk.Button(main, text="Your village is on Fire! Put it out!", command=self.fix)
+        self.removeBurn = tk.Button(main, text="Your village is on Fire! " + requirement + " Water needed.", command=self.fix)
         self.removeBurn.place(x=10,y=100)
 
     def fix(self):
@@ -37,7 +37,7 @@ class Burn(VillageEvent):
 class Flood(VillageEvent):
     def __init__(self, dorp, main):
         #requirement of resource to fix
-        requirement = 200
+        requirement = 1000
 
         VillageEvent.__init__(self, requirement, dorp, main)
 
@@ -46,7 +46,7 @@ class Flood(VillageEvent):
         
         self.dorp.setState(2)
 
-        self.removeFlood = tk.Button(main, text="Your village is on Flooded! Repair it with wood!", command=self.fix)
+        self.removeFlood = tk.Button(main, text="Your village is on Flooded!" + requirement + "Wood needed.", command=self.fix)
         self.removeFlood.place(x=10,y=120)
 
     def fix(self):

@@ -5,6 +5,7 @@ import threading
 from model.event import *
 from model.scene import *
 from time import sleep
+from math import ceil
 
 
 class NFC(threading.Thread):
@@ -53,7 +54,7 @@ class NFC(threading.Thread):
             self.dorp.addPopulation(50)
             self.troublevillage.nextTurn()
         elif card == "124173115221127":     # dode kaart
-            self.dorp.lowerPopulation(30)
+            self.dorp.lowerPopulation(ceil(self.dorp.getPopulation() / 2))
             self.troublevillage.nextTurn()
 
         elif card == "25061219217197":  # wellbuilding

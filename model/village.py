@@ -131,7 +131,7 @@ class Village:
             self.wood = 0
 
     def getWood(self):
-        return self.wood
+        return int(self.wood)
 
     def addWater(self, water):
         if self.well:
@@ -148,7 +148,7 @@ class Village:
             self.water = 0
 
     def getWater(self):
-        return self.water
+        return int(self.water)
 
     # for next turn use the one in scene
     def nextTurn(self):

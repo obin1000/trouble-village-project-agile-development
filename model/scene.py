@@ -57,7 +57,14 @@ class TroubleVillage(tk.Tk):
 
     def update(self):
         # call this function to refresh the resources.
+        if self.dorp.getPopulation() <= 0:
+            self.endGame(0)
+        if self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
+            self.endGame(1)
+
         self.switch_frame(VillagePage)
+
+
 
     # for next turn use this one
     def nextTurn(self):
@@ -88,13 +95,6 @@ class TroubleVillage(tk.Tk):
         self.dorp.setPoints()
         self.dorp.nextTurn()
 
-
-        if ((self.dorp.getPopulation()) <= 0):
-            self.endGame(0)
-        if self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
-            self.endGame(1)
-        else:
-            self.update()
 
 class StartPage(tk.Frame):
     def __init__(self, master, controller):
@@ -366,7 +366,7 @@ class ClassSelectionPage(tk.Frame):
         label1.pack()
 
         self.playerAmount = tk.Entry(self)
-        self.playerAmount.insert(0, "4") # default 4 players for now.
+        self.playerAmount.insert(0, "2") # default 4 players for now.
         print(self.playerAmount.get())
 
         self.playerAmount.pack()
