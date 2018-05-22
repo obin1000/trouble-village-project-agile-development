@@ -36,7 +36,7 @@ class TroubleVillage(tk.Tk):
     def startGame(self, players):
         # starting game here.
 
-        self.dorp = Village("Trouble Village", 10, 100, 50, players)
+        self.dorp = Village("Trouble Village", 100, 0, 0, players)
         self.switch_frame(VillagePage)
 
         if includeIO:
