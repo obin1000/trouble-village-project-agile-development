@@ -59,11 +59,11 @@ class TroubleVillage(tk.Tk):
         # call this function to refresh the resources.
         if self.dorp.getPopulation() <= 0:
             self.endGame(0)
-        if self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
+        elif self.dorp.ship1 and self.dorp.ship2 and self.dorp.ship3 and self.dorp.ship4:
             self.endGame(1)
-
-        self.switch_frame(VillagePage)
-
+        else:
+            self.switch_frame(VillagePage)
+        
 
 
     # for next turn use this one
