@@ -7,7 +7,7 @@ class Village:
         self.wood = wood
         self.water = water
         self.players = players
-        self.turn = 0
+        self.turn = 1
         self.state = 0
         self.points = 0
         self.well = False
