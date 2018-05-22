@@ -61,24 +61,24 @@ class Village:
             return False
 
     def buildShip1(self):
-        if self.wood - 500 >= 0:
-            self.wood -= 500
+        if self.wood - 2500 >= 0:
+            self.wood -= 2500
             self.ship1 = True
             return True
         else:
             return False
 
     def buildShip2(self):
-        if self.wood - 500 >= 0:
-            self.wood -= 500
+        if self.wood - 1500 >= 0:
+            self.wood -= 1500
             self.ship2 = True
             return True
         else:
             return False
 
     def buildShip3(self):
-        if self.wood - 500 >= 0:
-            self.wood -= 500
+        if self.wood - 1500 >= 0:
+            self.wood -= 1500
             self.ship3 = True
             return True
         else:
