@@ -5,22 +5,22 @@ import tkinter as tk
 class VillageEvent:
     # Constructor voor Village
     def __init__(self, requirement, dorp, main):
-        self.requirement = 50
+
         self.dorp = dorp
         self.main = main
 
 class Burn(VillageEvent):
     def __init__(self, dorp, main):
         # requirement of resource to fix
-        requirement = 1500
+        self.requirement = 1500
 
-        VillageEvent.__init__(self, requirement, dorp, main)
+        VillageEvent.__init__(self, self.requirement, dorp, main)
 
         self.main = main
         
         self.dorp.setState(1)
 
-        self.removeBurn = tk.Button(main, text="Your village is on Fire! " + str(requirement) + " Water needed.", command=self.fix)
+        self.removeBurn = tk.Button(main, text="Your village is on Fire! " + str(self.requirement) + " Water needed.", command=self.fix)
         self.removeBurn.place(x=10,y=100)
 
     def fix(self):
@@ -37,16 +37,16 @@ class Burn(VillageEvent):
 class Flood(VillageEvent):
     def __init__(self, dorp, main):
         #requirement of resource to fix
-        requirement = 1000
+        self.requirement = 1000
 
-        VillageEvent.__init__(self, requirement, dorp, main)
+        VillageEvent.__init__(self, self.requirement, dorp, main)
 
         self.dorp = dorp
         self.main = main
         
         self.dorp.setState(2)
 
-        self.removeFlood = tk.Button(main, text="Your village is on Flooded!" + str(requirement) + " Wood needed.", command=self.fix)
+        self.removeFlood = tk.Button(main, text="Your village is on Flooded!" + str(self.requirement) + " Wood needed.", command=self.fix)
         self.removeFlood.place(x=10,y=120)
 
     def fix(self):
