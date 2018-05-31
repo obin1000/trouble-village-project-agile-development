@@ -1,4 +1,4 @@
-includeIO = True
+includeIO = False
 
 import tkinter as tk
 import os
@@ -85,12 +85,14 @@ class TroubleVillage(tk.Tk):
                 self.dorp.addWater(300)
 
         # subtract a number between 0 and 5 from the population count per turn.
-        self.dorp.lowerPopulation(random.randint(0,5))
+        self.dorp.lowerPopulation(random.randint(0, 14))
 
         # if there's an event active we apply a double popu lation penalty.
         if self.dorp.getState() != 0:
-            self.dorp.lowerPopulation(random.randint(5,10))
+            self.dorp.lowerPopulation(random.randint(5, 10))
 
+        if self.dorp.hospital:
+            self.dorp.addPopulation(random.randint(0, 8))
 
         self.dorp.setPoints()
         self.dorp.nextTurn()
@@ -274,6 +276,11 @@ class VillagePage(tk.Frame):
         canvas.bgimg = bgimg
         canvas.create_image(0, 0, image=canvas.bgimg, anchor="nw")
 
+        if (dorp.hospital):
+            icon_stockpile = tk.PhotoImage(file='img/hospital.png')
+            canvas.icon_stockpile = icon_stockpile
+            canvas.create_image(610, 115, image=canvas.icon_stockpile, anchor="nw")
+
         canvas.create_rectangle(0, 40, 800, 80, fill="white")
         canvas.create_rectangle(0, 480, 50, 430, fill="white")
         canvas.create_rectangle(600, 480, 800, 240, fill="white")
@@ -324,6 +331,7 @@ class VillagePage(tk.Frame):
             icon_stockpile = tk.PhotoImage(file='img/stockpile.png')
             canvas.icon_stockpile = icon_stockpile
             canvas.create_image(110, 164, image=canvas.icon_stockpile, anchor="nw")
+
 
         if (dorp.ship1):
             icon_ship1 = tk.PhotoImage(file='img/ship1.png')

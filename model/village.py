@@ -12,6 +12,7 @@ class Village:
         self.points = 0
         self.well = False
         self.stockpile = False
+        self.hospital = False
         self.ship1 = False
         self.ship2 = False
         self.ship3 = False
@@ -55,6 +56,14 @@ class Village:
     def buildStockpile(self):
         if self.water - 500 >= 0:
             self.water -= 500
+            self.stockpile = True
+            return True
+        else:
+            return False
+
+    def buildHospital(self):
+        if self.wood - 2000 >= 0:
+            self.water -= 2000
             self.stockpile = True
             return True
         else:
