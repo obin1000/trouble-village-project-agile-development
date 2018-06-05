@@ -63,7 +63,7 @@ class NFC(threading.Thread):
         elif card == "18824821821771":  # stockpilebuilding
             self.dorp.buildStockpile()
             self.troublevillage.update()
-        elif card == "":  # hospitalbuilding
+        elif card == "425979163253":  # hospitalbuilding
             self.dorp.buildHospital()
             self.troublevillage.update()
 
