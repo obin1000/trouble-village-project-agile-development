@@ -63,8 +63,8 @@ class Village:
 
     def buildHospital(self):
         if self.wood - 2000 >= 0:
-            self.water -= 2000
-            self.stockpile = True
+            self.wood -= 2000
+            self.hospital = True
             return True
         else:
             return False
